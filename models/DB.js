@@ -8,8 +8,8 @@ const Image=new Schema({
 });
 
 const ExternalId=new Schema({ 
-  key:string ,
-  value:string 
+  key:String ,
+  value:String 
 });
 
 const Link=new Schema({
@@ -43,7 +43,11 @@ const Track=new Schema({
   speechiness:Number ,
   tempo:Number ,
   timeSignature:Date ,
-  valence:Number
+  valence:Number,
+  artists: {
+    artistId: mongoose.Schema.Types.ObjectId
+    //ref: 'Artist'
+  }
 });
 
 const Playlist=new Schema({
@@ -54,8 +58,8 @@ const Playlist=new Schema({
   isPublic:Boolean ,
   images:[Image] ,
   hasTracks:[{
-    trackId: mongoose.Schema.Types.ObjectId,
-    ref: 'Track'
+    trackId:  mongoose.Schema.Types.ObjectId,
+    //ref: 'Track'
   }]
   
 });
@@ -74,8 +78,8 @@ const Album=new Schema({
   releaseDatePercision: String ,
   label:String ,
   hasTracks:[{
-    trackId: mongoose.Schema.Types.ObjectId,
-    ref: 'Track'
+    trackId:  mongoose.Schema.Types.ObjectId,
+    //ref: 'Track'
   }]
   
 });
@@ -89,6 +93,7 @@ const Category=new Schema({
 
 
 const User=new Schema({ 
+  birthDate:Date ,
   email:String ,
   type:String ,
   password:String ,
@@ -101,46 +106,67 @@ const User=new Schema({
   displayName:String ,
   product:String ,
   follow:[{
-    id: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    id:  mongoose.Schema.Types.ObjectId,
+    //ref: 'User'
   }],
   followedBy:[{
-    id: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    id:  mongoose.Schema.Types.ObjectId,
+    //ref: 'User'
   }],
   like:[{
-    trackId: mongoose.Schema.Types.ObjectId,
-    ref: 'Track'
+    trackId:  mongoose.Schema.Types.ObjectId
+    //ref: 'Track'
   }],
   createPlaylist:[{
-    playListId: mongoose.Schema.Types.ObjectId,
-    ref: 'Playlist',
+    playListId:  mongoose.Schema.Types.ObjectId,
+    //ref: 'Playlist',
     addedAt:Date ,
     isLocal:Boolean ,
     collaboratorsId:[{
-      id: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      id:  mongoose.Schema.Types.ObjectId,
+      //ref: 'User'
     }]
   }],
   followPlaylist:[{
-    playListId: mongoose.Schema.Types.ObjectId,
-    ref: 'Playlist'
+    playListId:  mongoose.Schema.Types.ObjectId
+    //ref: 'Playlist'
     
   }],
   saveAlbum:[{
     savedAt:Date,
-    albumId: mongoose.Schema.Types.ObjectId,
-    ref: 'Album'
+    albumId:  mongoose.Schema.Types.ObjectId,
+    //ref: 'Album'
   }],
   playHistory:[{
     tracks:{
-      trackId: mongoose.Schema.Types.ObjectId,
-      ref: 'Track'
+      trackId:  mongoose.Schema.Types.ObjectId
+      //ref: 'Track'
     },
   addedAt:Date,
-  type:string ,
+  type:String ,
   link:Link ,
-  }]
+  }],
+  tracksInQueue:[{
+      trackId:  mongoose.Schema.Types.ObjectId,
+      //ref: 'Track'
+    isQueue:Boolean,
+    // if add by add to queue request 
+    inedex:Number,
+    isNextToCurrent:Boolean
+    // if next to current in playlit
+  }],
+  player:{
+    current_track_index:Number,
+    current_track:mongoose.Schema.Types.ObjectId,
+    next_track:mongoose.Schema.Types.ObjectId,
+    prev_track:mongoose.Schema.Types.ObjectId,
+    is_playing:Boolean,
+    is_shuffled:Boolean,
+    is_repeat:Boolean,
+    volume:Number,
+    last_from_source:String
+  }
+  
 });
 
 const Artist=new Schema({ 
@@ -149,29 +175,27 @@ const Artist=new Schema({
     genre:[String] ,
     type:String ,
     user:{
-      userId: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      userId: mongoose.Schema.Types.ObjectId
+      //ref: 'User'
     },
     addAlbums:[{
-      albumId: mongoose.Schema.Types.ObjectId,
-      ref: 'Album'
+      albumId:  mongoose.Schema.Types.ObjectId
+      //ref: 'Album'
     }],
     addTracks:[{
-      trackId: mongoose.Schema.Types.ObjectId,
-      ref: 'Track'
+      trackId:  mongoose.Schema.Types.ObjectId
+      //ref: 'Track'
     }]
 
 });
 
-const Spotify=new Schema({
-  artist:[Artist] ,
-  album:[Album] ,
-  user:[User] ,
-  playlist:[Playlist] ,
-  category:[Category] ,
-  track:[Track]
-});
+const user=mongoose.model('User',User);
+const artist=mongoose.model('Artist',Artist);
+const album=mongoose.model('Album',Album);
+const track=mongoose.model('Track',Track);
+const playlist=mongoose.model('Playlist',Playlist);
+const category=mongoose.model('Category',Category);
 
-module.exports=Spotify;
 
+module.exports={user,artist,album,track,playlist,category}
 
