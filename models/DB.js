@@ -44,10 +44,10 @@ const Track=new Schema({
   tempo:Number ,
   timeSignature:Date ,
   valence:Number,
-  artists: {
+  artists: [{
     artistId: mongoose.Schema.Types.ObjectId
     //ref: 'Artist'
-  }
+  }]
 });
 
 const Playlist=new Schema({
