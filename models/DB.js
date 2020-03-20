@@ -20,7 +20,8 @@ const Link=new Schema({
 
 const Track=new Schema({ 
   link:Link ,
-  externalId:ExternalId ,
+  externalId:mongoose.Schema.Types.ObjectId ,
+  artistId:mongoose.Schema.Types.ObjectId,
   availableMarkets:[String] ,
   discNumber:Number ,
   trackNumber:Number ,
@@ -43,11 +44,7 @@ const Track=new Schema({
   speechiness:Number ,
   tempo:Number ,
   timeSignature:Date ,
-  valence:Number,
-  artists: [{
-    artistId: mongoose.Schema.Types.ObjectId
-    //ref: 'Artist'
-  }]
+  valence:Number
 });
 
 const Playlist=new Schema({
