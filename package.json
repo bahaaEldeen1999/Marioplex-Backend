@@ -18,6 +18,7 @@
   "homepage": "https://github.com/MohmedMonsef/Marioplex-Backend#readme",
   "dependencies": {
     "jest": "^25.1.0",
-    "mongoose": "^5.9.3"
+    "mongoose": "^5.9.3",
+    "node-migrate": "^0.1.0"
   }
 }
