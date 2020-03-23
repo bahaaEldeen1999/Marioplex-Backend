@@ -22,6 +22,7 @@ const Track=new Schema({
   link:Link ,
   externalId:mongoose.Schema.Types.ObjectId ,
   artistId:mongoose.Schema.Types.ObjectId,
+  albumId: mongoose.Schema.Types.ObjectId,
   availableMarkets:[String] ,
   discNumber:Number ,
   trackNumber:Number ,
@@ -143,25 +144,26 @@ const User=new Schema({
   type:String ,
   link:Link ,
   }],
-  tracksInQueue:[{
-      trackId:  mongoose.Schema.Types.ObjectId,
-      //ref: 'Track'
-    isQueue:Boolean,
-    // if add by add to queue request 
-    inedex:Number,
-    isNextToCurrent:Boolean
-    // if next to current in playlit
-  }],
+  queue:{
+    lastInPlaylistIndex:Number,
+    queuIndex:Number,  
+    tracksInQueue:[{
+      trackId:mongoose.Schema.Types.ObjectId,
+        //ref: 'Track'
+      isQueue:Boolean,
+      isPlaylist:Boolean,
+      sourceId:mongoose.Schema.Types.ObjectId
+    }]
+},
   player:{
-    current_track_index:Number,
+    last_playlist_track_index:Number,
     current_track:mongoose.Schema.Types.ObjectId,
-    next_track:mongoose.Schema.Types.ObjectId,
-    prev_track:mongoose.Schema.Types.ObjectId,
+    next_track: mongoose.Schema.Types.ObjectId,
+    prev_track: mongoose.Schema.Types.ObjectId,
     is_playing:Boolean,
     is_shuffled:Boolean,
     is_repeat:Boolean,
-    volume:Number,
-    last_from_source:String
+    volume:Number
   }
   
 });
