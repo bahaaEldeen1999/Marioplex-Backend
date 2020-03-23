@@ -20,10 +20,9 @@ const Link=new Schema({
 
 const Track=new Schema({ 
   link:Link ,
-  externalId:mongoose.Schema.Types.ObjectId ,
-  artistId:mongoose.Schema.Types.ObjectId,
-  albumId: mongoose.Schema.Types.ObjectId,
+  externalId:ExternalId ,
   availableMarkets:[String] ,
+  albumId: mongoose.Schema.Types.ObjectId,
   discNumber:Number ,
   trackNumber:Number ,
   durationMs:Number ,
@@ -45,7 +44,11 @@ const Track=new Schema({
   speechiness:Number ,
   tempo:Number ,
   timeSignature:Date ,
-  valence:Number
+  valence:Number,
+  artists: [{
+    artistId: mongoose.Schema.Types.ObjectId
+    //ref: 'Artist'
+  }]
 });
 
 const Playlist=new Schema({
@@ -148,20 +151,21 @@ const User=new Schema({
     lastInPlaylistIndex:Number,
     queuIndex:Number,  
     tracksInQueue:[{
-      trackId:mongoose.Schema.Types.ObjectId,
+      trackId:   mongoose.Schema.Types.ObjectId,
         //ref: 'Track'
       isQueue:Boolean,
-      isPlaylist:Boolean,
-      sourceId:mongoose.Schema.Types.ObjectId
-    }]
+        }]
 },
   player:{
     last_playlist_track_index:Number,
-    current_track:mongoose.Schema.Types.ObjectId,
+    current_track: mongoose.Schema.Types.ObjectId,
+      //ref: 'Track'
     next_track: mongoose.Schema.Types.ObjectId,
     prev_track: mongoose.Schema.Types.ObjectId,
     is_playing:Boolean,
     is_shuffled:Boolean,
+    current_source:mongoose.Schema.Types.ObjectId,
+    isPlaylist:Boolean,
     is_repeat:Boolean,
     volume:Number
   }
