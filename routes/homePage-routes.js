@@ -2,13 +2,10 @@ const router = require('express').Router();
 
 const Artist =require('../public-api/Artist-api');
 const Album =require('../public-api/album-api');
-const Track =require('../public-api/track-api');
+const Player = require('../public-api/player-api');
 const User = require('../public-api/user-api');
 const Playlist =require('../public-api/playlist-api');
 const {auth:checkAuth} = require('../middlewares/isMe');
-const {content:checkContent} = require('../middlewares/content');
-const {isArtist:checkType} = require('../middlewares/check-type');
-const {upload:uploadTrack} = require('../middlewares/upload');
 
 
 router.get('/browse/new-releases',async (req,res)=>{
@@ -35,6 +32,13 @@ router.get('/browse/popular-playlists',async (req,res)=>{
     const popularPlaylists = await Playlist.getPopularPlaylists();
      if(!popularPlaylists) res.status(400).send('can not get albums');
      else res.send(popularPlaylists);
+  }) 
+
+  router.get('/browse/recently-playing',checkAuth,async (req,res)=>{
+    const user = await User.getUserById(req.user._id);
+    const recentlyPlaying = await Player.getRecentlyHomePage(user);
+     if(!recentlyPlaying) res.status(400).send('do not have a recently playing');
+     else res.send(recentlyPlaying);
   }) 
  
 module.exports = router;

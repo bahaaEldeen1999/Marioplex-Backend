@@ -128,6 +128,8 @@ const User=new Schema({
   playHistory:[{
     trackId: mongoose.Schema.Types.ObjectId	,
       //ref: 'Track'
+    sourceId:mongoose.Schema.Types.ObjectId	,
+    sourceType:String
    
   }],
   followPlaylist:[{
