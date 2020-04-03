@@ -22,8 +22,9 @@ module.exports = (passport) => {
         async function(accessToken, refreshToken, profile, done) {
               
                if(profile){
-                   //console.log(profile);
-                    const user = await userDocument.findOne({ email:profile.emails[0].value },(err,user)=>{
+                   console.log(profile);
+                   let correctEmail=(profile.emails==undefined)?profile.email:profile.emails[0].values;
+                    const user = await userDocument.findOne({ email:correctEmail },(err,user)=>{
                         if(err) return 0;
                         return user;
                     });
@@ -34,7 +35,7 @@ module.exports = (passport) => {
                     }else{
                         // create user
                         const newUser = await new userDocument({
-                            email:profile.emails[0].value,
+                            email:correctEmail,
                             displayName:profile.displayName,
                             gender:profile.gender,
                             isFacebook:true,
