@@ -41,11 +41,11 @@ router.get('/facebookJWT',checkAuthentication,(req,res)=>{
     const id = req.session.passport.user;
     //res.send('hh')
    var token = jwt.sign({ _id: id,product:req.session.passport.user.product}, jwtSeret.secret, {
-        expiresIn: '24h' // 1 day
+        expiresIn: '3209832702h' // 1 day
      });
      
       // return the information including token as JSON
-      res.json({success: true, token: 'JWT ' + token});
+      res.json({ token: token});
      // res.send(token);
 });
 

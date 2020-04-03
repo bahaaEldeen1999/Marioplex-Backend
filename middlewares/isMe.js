@@ -2,7 +2,7 @@ const jwt=require('jsonwebtoken');
 const jwtSecret = require('../config/jwt-key').secret;
 function auth(req,res,next){
     
-const token=req.header('x-auth-token');
+const token=req.header('Authorization');
 
 if(!token){return res.status(401).send('No Available token');}
 
