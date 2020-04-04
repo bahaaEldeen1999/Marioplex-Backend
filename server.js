@@ -1,4 +1,3 @@
-
 const connection=require('./DBconnection/connection');
 const express = require('express');
 const app =express();
@@ -8,17 +7,18 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 const logger = require('morgan');
 const passport = require('passport');
-const session = require('express-session')
-const browse=require('./routes/browse')
-const album=require('./routes/album')
+const session = require('express-session');
+const browse=require('./routes/browse');
+const album=require('./routes/album');
 const Track=require('./routes/track-routes');
 const playlist=require('./routes/playlist-routes');
 const Artist=require('./routes/Artist-route');
 const Library=require('./routes/Library-routes');
-const userProfile=require('./routes/user-profile-routes')
+const userProfile=require('./routes/user-profile-routes');
+const homePage =require('./routes/home-page-routes');
 const login=require('./routes/login');
 const signup=require('./routes/signup-routes');
-const search=require('./routes/search')
+const search=require('./routes/search');
 require('./config/passport');
 
 
@@ -35,6 +35,7 @@ app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(homePage);
 app.use(Library);
 app.use(forgpass);
 app.use(userProfile)

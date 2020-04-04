@@ -26,6 +26,23 @@ const Playlist =  {
         return playlist;
 
     },
+     
+    getPopularPlaylists:async function(){
+        // with - is from big to small and without is from small to big
+        var replaylists =[]
+        const  playlists = await playlistDocument.find({}).sort('-popularity')
+        if(playlists){
+                var limit;// to limit the num of playlists by frist 20 only but should check if num of albums less than 10  
+                if(playlists.length<20)      limit=playlists.length;
+                else  limit =20 ; 
+            for(let i=0;i<limit;i++){
+                const user1 = await userDocument.findById(playlists[i].ownerId);
+                replaylists.push({owner:{id:playlists[i].ownerId,type:"user",name:user1.displayName},collaborative:playlists[i].collaborative,type:'playlist',name:playlists[i].name,images:playlists[i].images,id:playlists[i]._id,Description:playlists[i].Description, isPublic:playlists[i].isPublic});
+            }
+        }
+        const replaylistsJson={playlists:replaylists};
+        return replaylistsJson;
+    },
     //for routes
     getPlaylistWithTracks : async function(playlistId,snapshotID,user){    
         const playlist = await this.getPlaylist(playlistId);
