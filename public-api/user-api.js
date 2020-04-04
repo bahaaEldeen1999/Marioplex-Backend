@@ -1,6 +1,6 @@
 const  {user:userDocument,artist:artistDocument,album:albumDocument,track:trackDocument,playlist:playlistDocument,category:categoryDocument} = require('../models/db');
 const Track =  require('./track-api');
-const Playlist =  require('./Playlist-api');
+const Playlist =  require('./playlist-api');
 // initialize db 
 const bcrypt=require('bcrypt');
 const Artist=require('./Artist-api');

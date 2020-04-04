@@ -5,7 +5,7 @@ const  {user:userDocument,artist:artistDocument,album:albumDocument,track:trackD
 const connection=require('../DBconnection/connection');
 const User=require('./user-api');
 const track=require('./track-api');
-const artist=require('./artist-api');
+const artist=require('./Artist-api');
  const Album =  {
     
     addTrack  : async function(AlbumId,Track){     
