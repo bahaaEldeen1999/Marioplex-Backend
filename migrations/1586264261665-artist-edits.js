@@ -12,14 +12,15 @@ console.log("connection is made");
 console.log("connection got error : ",error);
 });
 let defaultUser = mongoose.Types.ObjectId();
-module.exports.up = function (next) {
-  artistDocument.find({},async (err,files)=>{
+module.exports.up = async function (next) {
+ await artistDocument.find({},async (err,files)=>{
     if(err) throw err;
     for(let file of files){
         file.Name = "anyName",
-        file.userId = file.user.userId;
+
+        file.userId = file.user? file.user.userId:defaultUser;
         file.user = undefined;
-        
+
         await file.save();
     }
   })

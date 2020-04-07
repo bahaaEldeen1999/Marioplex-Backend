@@ -13,7 +13,7 @@ console.log("connection got error : ",error);
 });
 // update all tracks to include artist id
 module.exports.up = async function (next) {
-  trackDocument.find({},async (err,tracks)=>{
+  await trackDocument.find({},async (err,tracks)=>{
     if(err) next(err);
     for(let track of tracks){
       track.externalId = mongoose.Types.ObjectId();

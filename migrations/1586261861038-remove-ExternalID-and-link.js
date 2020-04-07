@@ -14,7 +14,7 @@ console.log("connection got error : ",error);
 });
 module.exports.up = async function (next) {
     // remove from track
-    trackDocument.find({},async(err,files)=>{
+    await trackDocument.find({},async(err,files)=>{
       for(let file of files){
         file.externalId = undefined;
         file.link = undefined;
@@ -24,7 +24,7 @@ module.exports.up = async function (next) {
     })
 
     // remove from playlist
-    playlistDocument.find({},async (err,files)=>{
+    await  playlistDocument.find({},async (err,files)=>{
       for(let file of files){
         file.externalId = undefined;
         file.link = undefined;
@@ -34,7 +34,7 @@ module.exports.up = async function (next) {
     })
 
     // remove from album
-    albumDocument.find({},async (err,files)=>{
+    await   albumDocument.find({},async (err,files)=>{
       for(let file of files){
         file.externalId = undefined;
         file.link = undefined;
@@ -43,7 +43,7 @@ module.exports.up = async function (next) {
       }
     })
     // remove from category
-    categoryDocument.find({},async (err,files)=>{
+    await  categoryDocument.find({},async (err,files)=>{
       for(let file of files){
         file.externalId = undefined;
         file.link = undefined;
@@ -53,7 +53,7 @@ module.exports.up = async function (next) {
     })
 
     // remove from user
-    userDocument.find({},async (err,files)=>{
+    await userDocument.find({},async (err,files)=>{
       for(let file of files){
         file.externalId = undefined;
         file.link = undefined;

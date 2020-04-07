@@ -12,8 +12,8 @@ console.log("connection is made");
 console.log("connection got error : ",error);
 });
 let defaultUser = mongoose.Types.ObjectId();
-module.exports.up = function (next) {
-  categoryDocument.find({},async (err,files)=>{
+module.exports.up = async function (next) {
+  await categoryDocument.find({},async (err,files)=>{
     for(let file of files){
       let playlistIDs = [];
       if(!file.playlist) file.playlist = [];

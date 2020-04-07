@@ -13,7 +13,7 @@ console.log("connection got error : ",error);
 });
 // update all tracks to include artist id
 module.exports.up = async function (next) {
-  userDocument.find({},async (err,users)=>{
+  await userDocument.find({},async (err,users)=>{
     if(err) next(err);
     for(let user of users){
       user.player = {};

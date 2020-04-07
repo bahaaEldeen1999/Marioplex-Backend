@@ -1,0 +1,49 @@
+{
+  "lastRun": "1586264261665-artist-edits.js",
+  "migrations": [
+    {
+      "title": "1584803099092-initial-schema.js",
+      "timestamp": 1586265869042
+    },
+    {
+      "title": "1584803519154-add-artists-to-track.js",
+      "timestamp": 1586265869112
+    },
+    {
+      "title": "1584803767099-add-tracksInQueue-to-user.js",
+      "timestamp": 1586265869134
+    },
+    {
+      "title": "1584803839926-add-player-to-user.js",
+      "timestamp": 1586265869158
+    },
+    {
+      "title": "1584803982132-change-externalId-to-objectId.js",
+      "timestamp": 1586265869187
+    },
+    {
+      "title": "1586261861038-remove-ExternalID-and-link.js",
+      "timestamp": 1586265869255
+    },
+    {
+      "title": "1586262173924-add-artistId-to-track.js",
+      "timestamp": 1586265869291
+    },
+    {
+      "title": "1586262384838-add-ownerID-to-playlist-and-snapshot-remove-hasTracks.js",
+      "timestamp": 1586265869320
+    },
+    {
+      "title": "1586262653348-change-category-playlist-array.js",
+      "timestamp": 1586265869343
+    },
+    {
+      "title": "1586263238667-user-edits.js",
+      "timestamp": 1586265869379
+    },
+    {
+      "title": "1586264261665-artist-edits.js",
+      "timestamp": 1586265869403
+    }
+  ]
+}

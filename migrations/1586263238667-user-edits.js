@@ -12,8 +12,10 @@ console.log("connection is made");
 console.log("connection got error : ",error);
 });
 let defaultUser = mongoose.Types.ObjectId();
-module.exports.up = function (next) {
-  userDocument.find({},async (err,files)=>{
+let defaultTrack = mongoose.Types.ObjectId();
+module.exports.up = async function (next) {
+  await userDocument.find({},async (err,files)=>{
+    console.log(files);
     if(err) throw err;
     for(let file of files){
         file.isFacebook = file.passeord ? false:true;
@@ -54,21 +56,29 @@ module.exports.up = function (next) {
 
         }
         if(!file.player) file.player = {};
+        else{
+          let currentTrackId = file.player.current_track
+          let nextTrackId = file.player.next_track
+          let prevTrackId = file.player.prev_track
+          if(!(!currentTrackId || !nextTrackId || !prevTrackId)){
+
         file.player.current_track = {
-          trackId: file.player.current_track,
+          trackId: defaultTrack,
           isPlaylist:true,
           playListId:defaultUser
         }
         file.player.prev_track = {
-          trackId: file.player.prev_track,
+          trackId: defaultTrack,
           isPlaylist:true,
           playListId:defaultUser
         }
         file.player.next_track = {
-          trackId: file.player.next_track,
+          trackId: defaultTrack,
           isPlaylist:true,
           playListId:defaultUser
         }
+      }
+      }
         await file.save();
     }
   })

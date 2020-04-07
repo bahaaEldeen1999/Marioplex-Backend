@@ -12,11 +12,12 @@ console.log("connection is made");
 console.log("connection got error : ",error);
 });
 let defaultUser = mongoose.Types.ObjectId();
-module.exports.up = function (next) {
-  playlistDocument.find({},async (err,files)=>{
+module.exports.up =async function (next) {
+  await playlistDocument.find({},async (err,files)=>{
     for(let file of files){
         file.ownerId = defaultUser;
         let hasTracks = [];
+        if(!file.hasTracks)file.hasTracks = [];
         for(let trackId of file.hasTracks){
               hasTracks.push(trackId.trackId);
         }
