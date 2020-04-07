@@ -17,11 +17,14 @@ module.exports.up = async function (next) {
  await artistDocument.find({},async (err,files)=>{
     if(err) throw err;
     for(let file of files){
-        file.Name = file.Name|| "anyName",
+      
 
         file.userId = file.user? file.user.userId:defaultUser;
         file.user = undefined;
-
+        file.Name = file.Name|| await userDocument.findById(file.userId,(err,file)=>{
+          if(err)throw err;
+          return file.displayName;
+        })
         await file.save();
     }
   })

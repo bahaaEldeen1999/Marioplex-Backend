@@ -17,8 +17,10 @@ module.exports.up = async function (next) {
   await userDocument.find({},async (err,users)=>{
     if(err) next(err);
     for(let user of users){
+      if(!user.tracksInQueue){
       user.tracksInQueue = [];
       await user.save();
+      }
     }
   });
   next()

@@ -17,8 +17,10 @@ module.exports.up = async function (next) {
   await trackDocument.find({},async (err,tracks)=>{
     if(err) next(err);
     for(let track of tracks){
+      if(!track.artists){
       track.artists = [];
       await track.save();
+      }
     }
   });
   next()

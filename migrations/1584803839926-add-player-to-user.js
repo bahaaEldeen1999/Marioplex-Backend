@@ -17,8 +17,10 @@ module.exports.up = async function (next) {
   await userDocument.find({},async (err,users)=>{
     if(err) next(err);
     for(let user of users){
+      if(!user.player){
       user.player = {};
       await user.save();
+      }
     }
   });
   next()

@@ -22,10 +22,12 @@ module.exports.up =async function (next) {
         for(let trackId of file.hasTracks){
               hasTracks.push(trackId.trackId);
         }
+        if(!file.snapshot){
         file.snapshot = [{
           hasTracks:hasTracks,
           action:"add tracks"
         }]
+      }
         file.hasTracks = undefined;
         await file.save();
     }

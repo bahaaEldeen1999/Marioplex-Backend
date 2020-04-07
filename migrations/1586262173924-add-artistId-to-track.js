@@ -16,7 +16,9 @@ let defaultUser = mongoose.Types.ObjectId();
 module.exports.up =async  function (next) {
   await trackDocument.find({}, async (err,files)=>{
     for(let file of files){
+      if(!file.artistId){
       file.artistId = defaultUser
+      }
       file.artists = undefined
       await file.save();
     }

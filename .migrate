@@ -3,47 +3,47 @@
   "migrations": [
     {
       "title": "1584803099092-initial-schema.js",
-      "timestamp": 1586265869042
+      "timestamp": 1586280002153
     },
     {
       "title": "1584803519154-add-artists-to-track.js",
-      "timestamp": 1586265869112
+      "timestamp": 1586280009004
     },
     {
       "title": "1584803767099-add-tracksInQueue-to-user.js",
-      "timestamp": 1586265869134
+      "timestamp": 1586280010863
     },
     {
       "title": "1584803839926-add-player-to-user.js",
-      "timestamp": 1586265869158
+      "timestamp": 1586280010968
     },
     {
       "title": "1584803982132-change-externalId-to-objectId.js",
-      "timestamp": 1586265869187
+      "timestamp": 1586280011073
     },
     {
       "title": "1586261861038-remove-ExternalID-and-link.js",
-      "timestamp": 1586265869255
+      "timestamp": 1586280011761
     },
     {
       "title": "1586262173924-add-artistId-to-track.js",
-      "timestamp": 1586265869291
+      "timestamp": 1586280011951
     },
     {
       "title": "1586262384838-add-ownerID-to-playlist-and-snapshot-remove-hasTracks.js",
-      "timestamp": 1586265869320
+      "timestamp": 1586280012084
     },
     {
       "title": "1586262653348-change-category-playlist-array.js",
-      "timestamp": 1586265869343
+      "timestamp": 1586280012190
     },
     {
       "title": "1586263238667-user-edits.js",
-      "timestamp": 1586265869379
+      "timestamp": 1586280012295
     },
     {
       "title": "1586264261665-artist-edits.js",
-      "timestamp": 1586265869403
+      "timestamp": 1586280012401
     }
   ]
 }
