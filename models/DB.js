@@ -114,12 +114,6 @@ const User=new Schema({
     isPrivate:Boolean ,
     collaboratorsId:[mongoose.Schema.Types.ObjectId ]
   }],
-  followPlaylist:[{
-    playListId: mongoose.Schema.Types.ObjectId,
-    isPrivate:Boolean
-    //ref: 'Playlist'
-    
-  }],
   saveAlbum:[{
     savedAt:Date,
     albumId: mongoose.Schema.Types.ObjectId,
