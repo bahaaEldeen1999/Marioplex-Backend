@@ -21,7 +21,7 @@ const MockUsers  = {
         return 0;
     },
     signup: function(email,password,gender,country,birthday,username){
-        if(!email || !password)return 0;
+        if(!email || !password || !gender || !country || !birthday || !username)return 0;
         for(let user of this.users){
             if(email == user.email) return 0;
         }
