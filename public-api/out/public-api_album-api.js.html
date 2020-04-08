@@ -1,4 +1,32 @@
-const { user: userDocument, artist: artistDocument, album: albumDocument, track: trackDocument, playlist: playlistDocument, category: categoryDocument } = require('../models/db');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public-api/album-api.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public-api/album-api.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { user: userDocument, artist: artistDocument, album: albumDocument, track: trackDocument, playlist: playlistDocument, category: categoryDocument } = require('../models/db');
 
 
 // initialize db 
@@ -54,10 +82,10 @@ const Album = {
         const albums = await albumDocument.find({}).sort('-releaseDate')
         if (albums) {
             var limit; // to limit the num of albums by frist 10 only but should check if num of albums less than 10  
-            if (albums.length < 20) limit = albums.length;
+            if (albums.length &lt; 20) limit = albums.length;
             else limit = 20;
 
-            for (let i = 0; i < limit; i++) {
+            for (let i = 0; i &lt; limit; i++) {
                 const artist1 = await artist.getArtist(albums[i].artistId);
                 reAlbums.push({ album_type: albums[i].albumType, artist: { type: 'artist', id: albums[i].artistId, name: artist1.Name }, available_markets: albums[i].availableMarkets, images: albums[i].images, id: albums[i]._id, name: albums[i].name, type: 'album' });
             }
@@ -75,9 +103,9 @@ const Album = {
         const albums = await albumDocument.find({}).sort('-popularity')
         if (albums) {
             var limit; // to limit the num of albums by frist 20 only but should check if num of albums less than 10  
-            if (albums.length < 20) limit = albums.length;
+            if (albums.length &lt; 20) limit = albums.length;
             else limit = 20;
-            for (let i = 0; i < limit; i++) {
+            for (let i = 0; i &lt; limit; i++) {
                 const artist1 = await artist.getArtist(albums[i].artistId);
                 reAlbums.push({ album_type: albums[i].albumType, artist: { type: 'artist', id: albums[i].artistId, name: artist1.Name }, available_markets: albums[i].availableMarkets, images: albums[i].images, id: albums[i]._id, name: albums[i].name, type: 'album' });
             }
@@ -86,7 +114,7 @@ const Album = {
         return reAlbumsJson;
     },
     /**
-     * get album with artist info &if user saved this album or not 
+     * get album with artist info &amp;if user saved this album or not 
      * @param {string} albumID - the id of album
      * @param {string} userID  -the id of user
      * @returns {object} -album object contain its artist info 
@@ -138,14 +166,14 @@ const Album = {
      */
     // the order of track in album 's tracks
     findIndexOfTrackInAlbum: async function(trackId, album) {
-        for (let i = 0; i < album.hasTracks.length; i++) {
+        for (let i = 0; i &lt; album.hasTracks.length; i++) {
             if (album.hasTracks[i].trackId == trackId) return i;
         }
         return -1
     },
     /**
      * get several albums
-     * @param {Array<string>} albumIds -array of albums ids 
+     * @param {Array&lt;string>} albumIds -array of albums ids 
      * @returns {Array} -contain set has albums object 
      */
     // get several albums by ids
@@ -156,7 +184,7 @@ const Album = {
 
         var Album = []
         if (albumIds == undefined) return 0;
-        for (var i = 0; i < albumIds.length; i++) {
+        for (var i = 0; i &lt; albumIds.length; i++) {
             var album = await this.getAlbumById(albumIds[i]);
             if (album) {
                 Album.push(album)
@@ -164,7 +192,7 @@ const Album = {
         }
         if (Album.length > 0) {
             AlbumWithArtist = []
-            for (let i = 0; i < Album.length; i++) {
+            for (let i = 0; i &lt; Album.length; i++) {
                 let Artist = await artist.getArtist(Album[i].artistId);
                 if (Artist) {
                     AlbumWithArtist.push({ Album: Album[i], Artist: Artist });
@@ -192,7 +220,7 @@ const Album = {
             return 0;
         } else {
 
-            for (i = 0; i < album.hasTracks.length; i++) {
+            for (i = 0; i &lt; album.hasTracks.length; i++) {
                 var Track = await track.getTrack(album.hasTracks[i].trackId);
                 if (Track) {
                     let track = {}
@@ -240,7 +268,7 @@ const Album = {
         // else return 0 as he already saved the album
         if (albumID == undefined) return 2;
         let albums = [];
-        for (let j = 0; j < albumID.length; j++) {
+        for (let j = 0; j &lt; albumID.length; j++) {
             let album = await this.getAlbumById(albumID[j]);
             if (album) {
                 albums.push(albumID[j]);
@@ -248,7 +276,7 @@ const Album = {
         }
         if (albums.length == 0) { return 2; }
         let count = 0;
-        for (let i = 0; i < albums.length; i++) {
+        for (let i = 0; i &lt; albums.length; i++) {
             if (this.checkIfUserSaveAlbum(user, albums[i]) == undefined) {
                 if (user.saveAlbum) {
                     user.saveAlbum.push({
@@ -283,17 +311,17 @@ const Album = {
         // else return 0 as he already saved the album
         let found = false;
         if (albumID == undefined) return 0;
-        for (let j = 0; j < albumID.length; j++) {
+        for (let j = 0; j &lt; albumID.length; j++) {
             if (this.checkIfUserSaveAlbum(user, albumID[j])) {
                 found = true;
-                for (let i = 0; i < user.saveAlbum.length; i++) {
+                for (let i = 0; i &lt; user.saveAlbum.length; i++) {
                     if (user.saveAlbum[i].albumId == albumID[j]) {
                         user.saveAlbum.splice(i, 1);
                     }
                 }
                 await user.save().catch();
             } else {
-                if ((!found && (j == (albumID.length - 1))) || (albumID.length == 1)) {
+                if ((!found &amp;&amp; (j == (albumID.length - 1))) || (albumID.length == 1)) {
                     return 0;
                 }
             }
@@ -301,4 +329,26 @@ const Album = {
         return 1;
     }
 }
-module.exports = Album;
+module.exports = Album;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Album.html">Album</a></li><li><a href="Artist.html">Artist</a></li><li><a href="Browse.html">Browse</a></li><li><a href="Search.html">Search</a></li><li><a href="Track.html">Track</a></li></ul><h3>Global</h3><ul><li><a href="global.html#auth">auth</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#Fuzzysearch">Fuzzysearch</a></li><li><a href="global.html#isArtist">isArtist</a></li><li><a href="global.html#removeDupliactes">removeDupliactes</a></li><li><a href="global.html#search">search</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Apr 08 2020 11:26:20 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
