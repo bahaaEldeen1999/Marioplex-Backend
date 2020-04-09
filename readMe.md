@@ -9,7 +9,9 @@
 
 ### first install only the dependecies by running
 > npm install --only=prod
-### then set node enviroment to be running in production
+### then set node enviroment to be running in production , if you are on  linux run
 > export NODE_ENV=production
+### if you are on windows run
+> set NODE_ENV=production
 ### then run the nodeJS seerver <br/>
 > node server.js
