@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: middlewares/check-type.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,32 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: middlewares/check-type.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * check if logged in user is an artist or not (MIDDLEWARE)
+ * @param {object} req 
+ * @param {object} res 
+ * @param {function} next
+ * @returns {void} 
+ */
+function isArtist(req,res,next){
+  
+    if(req.user.userType!="Artist") return res.status(403).send('Access Denied');
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
+    next();
     
-
-
-
-
-
+    };
+module.exports={isArtist};</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: middlewares/is-me.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,47 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: middlewares/is-me.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const jwt=require('jsonwebtoken');
+const jwtSecret = require('../config/jwt-key').secret;
+/**
+ * check if the user is authenticated ot not from jwt header  (MIDDLEWARE)
+ * @param {object} req 
+ * @param {object} res 
+ * @param {function} next
+ * @returns {void} 
+ */
+function auth(req,res,next){
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
+  // check the jwt token user sends in the header
     
 
+const token=req.header('x-auth-token');
 
+if(!token){return res.status(401).send('No Available token');}
 
+try{
+const decoded=jwt.verify(token,jwtSecret);
+req.user=decoded;
+next();
+}
+catch(ex){
+ 
+  return res.status(400).send('Invalid Token');
+}
 
-
+};
+module.exports={auth};</code></pre>
+        </article>
+    </section>
 
 
 
