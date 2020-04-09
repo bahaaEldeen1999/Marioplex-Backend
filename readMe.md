@@ -19,7 +19,7 @@
 ### we use packages 
 #### bcrypt
 > download by command line -> npm i bcrypt
- 
+
 #### body-parser
 > download by command line -> npm i body-parser
 #### cookie-parser
@@ -83,7 +83,9 @@
 > https://www.npmjs.com/package/{packageName}
 ## to run unit test 
 > npm run test -> which run all unit tests 
-> using jest package 
+> using jest package
+## to generate coverage code 
+> jest -c  --coverage --collectCoverageFrom=mock-classes/*.js
 ## run for developers <br/>
 ### first install the devDependencies and dependencies by running
 > npm install
