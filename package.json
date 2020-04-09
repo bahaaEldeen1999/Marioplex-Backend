@@ -36,7 +36,8 @@
     },
     "devDependencies": {
         "supertest": "^4.0.2",
-        "nodemon": "^2.0.2"
+        "nodemon": "^2.0.2",
+        "jsdoc": "^3.6.4"
     },
     "scripts": {
         "test": "jest",

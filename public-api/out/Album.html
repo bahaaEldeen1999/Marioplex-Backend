@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: Track</title>
+    <title>JSDoc: Namespace: Album</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: Track</h1>
+    <h1 class="page-title">Namespace: Album</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>Track</h2>
+        <h2>Album</h2>
         
     
 </header>
@@ -70,7 +70,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line4">line 4</a>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -109,7 +109,7 @@
     
 
     
-    <h4 class="name" id=".checkIfUserLikeTrack"><span class="type-signature">(static) </span>checkIfUserLikeTrack<span class="signature">(user, trackID)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".addTrack"><span class="type-signature">(static) </span>addTrack<span class="signature">(AlbumId, Track)</span><span class="type-signature"></span></h4>
     
 
     
@@ -117,7 +117,167 @@
 
 
 <div class="description">
-    <p>check if user like track</p>
+    <p>add track to album</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>AlbumId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>album id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Track</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".checkIfUserSaveAlbum"><span class="type-signature">(static) </span>checkIfUserSaveAlbum<span class="signature">(user, albumID)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>check if user followed this album</p>
 </div>
 
 
@@ -159,7 +319,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -169,236 +329,7 @@
 
             
 
-            <td class="description last"><p>the user</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>trackID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the track id</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line116">line 116</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".createTrack"><span class="type-signature">(static) </span>createTrack<span class="signature">(url, trackNumber, availableMarkets, artistID, albumID, duration)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>user create track</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>url</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the url of track</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>trackNumber</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the number of track</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>availableMarkets</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the markets</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>artistID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the artist id</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -411,7 +342,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -421,22 +352,336 @@
 
             
 
-            <td class="description last"><p>the album id</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line222">line 222</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".findIndexOfTrackInAlbum"><span class="type-signature">(static) </span>findIndexOfTrackInAlbum<span class="signature">(trackId, album)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>find the order of track in album</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>trackId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the id of track</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>duration</code></td>
+                <td class="name"><code>album</code></td>
             
 
             <td class="type">
             
                 
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>album object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line140">line 140</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>-the index of track in album</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">Number</span>
 
 
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getAlbumArtist"><span class="type-signature">(static) </span>getAlbumArtist<span class="signature">(albumID, userID)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>get album with artist info &amp;if user saved this album or not</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>albumID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
             
             </td>
 
@@ -444,7 +689,30 @@
 
             
 
-            <td class="description last"><p>the track duration</p></td>
+            <td class="description last"><p>the id of album</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the id of user</p></td>
         </tr>
 
     
@@ -485,7 +753,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line211">line 211</a>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -513,6 +781,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>-album object contain its artist info</p>
+</div>
+
 
 
 <dl>
@@ -539,7 +811,7 @@
     
 
     
-    <h4 class="name" id=".getAudioFeaturesTrack"><span class="type-signature">(static) </span>getAudioFeaturesTrack<span class="signature">(trackID)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id=".getAlbumById"><span class="type-signature">(static) </span>getAlbumById<span class="signature">(albumID)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -547,7 +819,7 @@
 
 
 <div class="description">
-    <p>get audio features for track</p>
+    <p>get album by id</p>
 </div>
 
 
@@ -583,7 +855,7 @@
 
         <tr>
             
-                <td class="name"><code>trackID</code></td>
+                <td class="name"><code>albumID</code></td>
             
 
             <td class="type">
@@ -599,7 +871,7 @@
 
             
 
-            <td class="description last"><p>the track id</p></td>
+            <td class="description last"><p>the id of album</p></td>
         </tr>
 
     
@@ -640,7 +912,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line68">line 68</a>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -668,6 +940,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>-album object</p>
+</div>
+
 
 
 <dl>
@@ -694,7 +970,7 @@
     
 
     
-    <h4 class="name" id=".getAudioFeaturesTracks"><span class="type-signature">(static) </span>getAudioFeaturesTracks<span class="signature">(trackIDs)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
+    <h4 class="name" id=".getAlbums"><span class="type-signature">(static) </span>getAlbums<span class="signature">(albumIds)</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
 
     
@@ -702,7 +978,7 @@
 
 
 <div class="description">
-    <p>get audio features for tracks</p>
+    <p>get several albums</p>
 </div>
 
 
@@ -738,495 +1014,7 @@
 
         <tr>
             
-                <td class="name"><code>trackIDs</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the track ids</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line94">line 94</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".getFullTrack"><span class="type-signature">(static) </span>getFullTrack<span class="signature">(trackID, user)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>get full track object by id</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>trackID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the track id</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the user</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line29">line 29</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".getTrack"><span class="type-signature">(static) </span>getTrack<span class="signature">(trackID)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>get track by id</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>trackID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the track id</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".getTracks"><span class="type-signature">(static) </span>getTracks<span class="signature">(tracksIDs, user)</span><span class="type-signature"> &rarr; {Array.&lt;objects>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>get several tracks</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>tracksIDs</code></td>
+                <td class="name"><code>albumIds</code></td>
             
 
             <td class="type">
@@ -1242,30 +1030,7 @@
 
             
 
-            <td class="description last"><p>the track ids</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the user</p></td>
+            <td class="description last"><p>array of albums ids</p></td>
         </tr>
 
     
@@ -1306,7 +1071,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line52">line 52</a>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -1334,6 +1099,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>-contain set has albums object</p>
+</div>
+
 
 
 <dl>
@@ -1342,7 +1111,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;objects></span>
+<span class="param-type">Array</span>
 
 
     </dd>
@@ -1360,7 +1129,7 @@
     
 
     
-    <h4 class="name" id=".likeTrack"><span class="type-signature">(static) </span>likeTrack<span class="signature">(user, trackID)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    <h4 class="name" id=".getNewReleases"><span class="type-signature">(static) </span>getNewReleases<span class="signature">()</span><span class="type-signature"> &rarr; {JSON}</span></h4>
     
 
     
@@ -1368,7 +1137,409 @@
 
 
 <div class="description">
-    <p>user like track</p>
+    <p>get new releases</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>-contain array of albums object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSON</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getPopularAlbums"><span class="type-signature">(static) </span>getPopularAlbums<span class="signature">()</span><span class="type-signature"> &rarr; {JSON}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>get popular albums</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>-contain array of albums object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSON</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getTracksAlbum"><span class="type-signature">(static) </span>getTracksAlbum<span class="signature">(albumID, user)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>get album's tracks</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>albumID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the id of album</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>user object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line185">line 185</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>-contain set has tracks</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".saveAlbum"><span class="type-signature">(static) </span>saveAlbum<span class="signature">(user, albumID)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>save album (make user follow an album)</p>
 </div>
 
 
@@ -1410,7 +1581,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1420,14 +1591,14 @@
 
             
 
-            <td class="description last"><p>the user</p></td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>trackID</code></td>
+                <td class="name"><code>albumID</code></td>
             
 
             <td class="type">
@@ -1443,7 +1614,7 @@
 
             
 
-            <td class="description last"><p>the track id</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1484,7 +1655,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line131">line 131</a>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line237">line 237</a>
     </li></ul></dd>
     
 
@@ -1509,24 +1680,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -1538,7 +1691,7 @@
     
 
     
-    <h4 class="name" id=".unlikeTrack"><span class="type-signature">(static) </span>unlikeTrack<span class="signature">(user, trackID)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    <h4 class="name" id=".unsaveAlbum"><span class="type-signature">(static) </span>unsaveAlbum<span class="signature">(user, albumID)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1546,7 +1699,7 @@
 
 
 <div class="description">
-    <p>user unlike track</p>
+    <p>unsave album (make user unfollow an album)</p>
 </div>
 
 
@@ -1588,7 +1741,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1598,14 +1751,14 @@
 
             
 
-            <td class="description last"><p>the user</p></td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>trackID</code></td>
+                <td class="name"><code>albumID</code></td>
             
 
             <td class="type">
@@ -1621,7 +1774,7 @@
 
             
 
-            <td class="description last"><p>the track id</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1662,7 +1815,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public-api_track-api.js.html">public-api/track-api.js</a>, <a href="public-api_track-api.js.html#line175">line 175</a>
+        <a href="public-api_album-api.js.html">public-api/album-api.js</a>, <a href="public-api_album-api.js.html#line280">line 280</a>
     </li></ul></dd>
     
 
@@ -1687,24 +1840,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
