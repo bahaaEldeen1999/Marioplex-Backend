@@ -1,4 +1,32 @@
-const { user: userDocument, artist: artistDocument, album: albumDocument, track: trackDocument, playlist: playlistDocument, category: categoryDocument } = require('../models/db');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public-api/player-api.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public-api/player-api.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { user: userDocument, artist: artistDocument, album: albumDocument, track: trackDocument, playlist: playlistDocument, category: categoryDocument } = require('../models/db');
 const Playlist = require('./playlist-api');
 const Album = require('./album-api');
 const Track = require('./track-api');
@@ -8,28 +36,28 @@ const Player = {
 
     /** 
     * get next and prev track from playlist or album object
-    * @param  {Array<Object>} hasTracks - tracks given
+    * @param  {Array&lt;Object>} hasTracks - tracks given
     * @param  {string} trackID - the track id
     * @param  {Object} user - the user
     * @returns {Object}
     */ 
     getPrevAndNext: function(hasTracks, trackID, user) {
         if (user.queue.queuIndex == -1) {
-            for (let i = 0; i < hasTracks.length; i++) {
+            for (let i = 0; i &lt; hasTracks.length; i++) {
                 if (trackID == hasTracks[i].trackId) {
                     return {
-                        "next_track": i + 1 < hasTracks.length ? hasTracks[i + 1] : 0, //wrap around
+                        "next_track": i + 1 &lt; hasTracks.length ? hasTracks[i + 1] : 0, //wrap around
                         "prev_track": i - 1 >= 0 ? hasTracks[i - 1] : hasTracks[hasTracks.length - 1], // wrap around
                         "last_playlist_track_index": i,
                     }
                 }
             }
         } else {
-            for (let i = user.queue.queuIndex + 1; i < hasTracks.length; i++) {
+            for (let i = user.queue.queuIndex + 1; i &lt; hasTracks.length; i++) {
                 if (trackID == hasTracks[i].trackId) {
 
                     return {
-                        "next_track": i + 1 < hasTracks.length ? user.queue.tracksInQueue[user.queue.queuIndex] : 0, //wrap around
+                        "next_track": i + 1 &lt; hasTracks.length ? user.queue.tracksInQueue[user.queue.queuIndex] : 0, //wrap around
                         "prev_track": i - 1 >= user.queue.queuIndex + 1 ? hasTracks[i - 1] : hasTracks[hasTracks.length - 1], // wrap around
                         "last_playlist_track_index": i,
                     }
@@ -76,24 +104,24 @@ const Player = {
     },
     
     /** 
-    * get recently playlists &albums & artist 
+    * get recently playlists &amp;albums &amp; artist 
     * @param  {Object} user - the user
-    * @returns {Array<Object>}
+    * @returns {Array&lt;Object>}
     */ 
     getRecentlyHomePage: async function(user) {
         if (user.playHistory) {
             let recentPlaying = [];
             let playHistory = user.playHistory;
             let limit;
-            if (playHistory.length < 20) limit = playHistory.length;
+            if (playHistory.length &lt; 20) limit = playHistory.length;
             else limit = 20;
-            for (let i = 0; i < limit; i++) {
+            for (let i = 0; i &lt; limit; i++) {
                 // now check type to print 
                 if (playHistory[i].sourceType == 'album') {
                     const album = await Album.getAlbumById(playHistory[i].sourceId);
                     if (!album) continue;
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //  TO DO handle repeate (make it return playlists in array & album in another array & artist in another array)
+                    //  TO DO handle repeate (make it return playlists in array &amp; album in another array &amp; artist in another array)
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     const artist = await Artist.getArtist(album.artistId);
                     recentPlaying.push({ id: album._id, name: album.name, type: "album", album_type: album.albumType, images: album.images, availableMarkets: album.availableMarkets, artist: { type: 'artist', id: album.artistId, name: artist.Name } })
@@ -162,13 +190,13 @@ const Player = {
     *  get recent tracks played by user
     * @param  {Object} user - the user
     * @param  {Number} limit - the limit number of tracks
-    * @returns {Array<Object>}
+    * @returns {Array&lt;Object>}
     */ 
     getRecentTracks: function(user, limit) {
         limit = limit || 50;
         let tracks = [];
         if (!user.playHistory) return tracks;
-        for (let i = 0; i < Math.min(user.playHistory.length, limit); i++) tracks.push(user.playHistory[i]); // becouse if playHistory less than limit
+        for (let i = 0; i &lt; Math.min(user.playHistory.length, limit); i++) tracks.push(user.playHistory[i]); // becouse if playHistory less than limit
         return tracks;
     },
 
@@ -197,7 +225,7 @@ const Player = {
                 return 1;
             }
             let i = 0;
-            for (let j = 0; j < playlist.snapshot[playlist.snapshot.length - 1].hasTracks.length; j++) {
+            for (let j = 0; j &lt; playlist.snapshot[playlist.snapshot.length - 1].hasTracks.length; j++) {
                 if (trackID == playlist.snapshot[playlist.snapshot.length - 1].hasTracks[j]) {
                     user.queue.index = i;
                 }
@@ -495,7 +523,7 @@ const Player = {
     /** 
     * get next songs in user queue
     * @param  {Object} user - the user
-    * @returns {Array<Object>}
+    * @returns {Array&lt;Object>}
     */  
     getQueue: async function(user) {
         const queue = user.queue;
@@ -504,7 +532,7 @@ const Player = {
         if (!queue.tracksInQueue) return 0;
         const queueIndex = queue.queuIndex;
         // get tracks that was added to queue
-        for (let i = 0; i < queueIndex; i++) {
+        for (let i = 0; i &lt; queueIndex; i++) {
             const track = await Track.getFullTrack(queue.tracksInQueue[i].trackId, user);
             if (!track) return 0;
             const album5 = await Album.getAlbumById(track.albumId);
@@ -512,10 +540,10 @@ const Player = {
             tracks.push({ fulltrack: track, isQueue: queue.tracksInQueue[i].isQueue, playlistId: sourse, isPlaylist: queue.tracksInQueue[i].isPlaylist, index: i, isPlayable: false });
         }
 
-        const lastplaylistIndex = user.player.last_playlist_track_index < 0 ? 0 : user.player.last_playlist_track_index;
+        const lastplaylistIndex = user.player.last_playlist_track_index &lt; 0 ? 0 : user.player.last_playlist_track_index;
 
         // get tracks that was next in playlist
-        for (let i = lastplaylistIndex + 1; i < queue.tracksInQueue.length; i++) {
+        for (let i = lastplaylistIndex + 1; i &lt; queue.tracksInQueue.length; i++) {
             const track = await Track.getFullTrack(queue.tracksInQueue[i].trackId, user);
             if (!track) return 0;
             const sourse = queue.tracksInQueue[i].playlistId;
@@ -527,7 +555,7 @@ const Player = {
         }
         //if repeat should display all the queue
         if (user.player.is_repeat || user.player.is_shuffled) {
-            for (let i = queueIndex + 1; i < lastplaylistIndex; i++) {
+            for (let i = queueIndex + 1; i &lt; lastplaylistIndex; i++) {
                 const track = await Track.getFullTrack(queue.tracksInQueue[i].trackId, user);
                 if (!track) return 0;
                 const sourse = queue.tracksInQueue[i].playlistId;
@@ -585,7 +613,7 @@ const Player = {
     */
     shuffleQueue: async function(user) {
         const track_last_playlist = user.queue.tracksInQueue[user.player["last_playlist_track_index"]].trackId;
-        for (let i = user.queue.queuIndex + 1; i < user.queue.tracksInQueue.length; i++) {
+        for (let i = user.queue.queuIndex + 1; i &lt; user.queue.tracksInQueue.length; i++) {
             const randomIndex = await this.rondom(user.queue.queuIndex + 1, user.queue.tracksInQueue.length - 1);
             const temp = user.queue.tracksInQueue[i].trackId;
             user.queue.tracksInQueue[i].trackId = user.queue.tracksInQueue[randomIndex].trackId;
@@ -610,7 +638,7 @@ const Player = {
                 return await this.setNextPrevCurrent(user, track_last_playlist);
             }
             let i = user.queue.queuIndex + 1;
-            for (let j = 0; j < playlist.snapshot[playlist.snapshot.length - 1].hasTracks.length; j++) {
+            for (let j = 0; j &lt; playlist.snapshot[playlist.snapshot.length - 1].hasTracks.length; j++) {
                 user.queue.tracksInQueue[i].trackId = playlist.snapshot[playlist.snapshot.length - 1].hasTracks[j];
                 user.queue.tracksInQueue[i].isPlaylist = user.player.isPlaylist;
                 user.queue.tracksInQueue[i].playlistId = user.player.current_source;
@@ -669,7 +697,7 @@ const Player = {
         if(!user.player)user.player={};
         if(!user.player.next_track) user.player.next_track = {};
         if(!user.player.prev_track) user.player.prev_track = {};
-        for (let i = user.queue.queuIndex + 1; i < user.queue.tracksInQueue.length; i++) {
+        for (let i = user.queue.queuIndex + 1; i &lt; user.queue.tracksInQueue.length; i++) {
             if (user.queue.tracksInQueue[i].trackId + 1 == lastTrack + 1) {
                 user.player["last_playlist_track_index"] = i;
                 await user.save();
@@ -711,4 +739,26 @@ const Player = {
     }
 }
 
-module.exports = Player;
+module.exports = Player;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Browse.html">Browse</a></li><li><a href="Player.html">Player</a></li><li><a href="Search.html">Search</a></li><li><a href="Track.html">Track</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#auth">auth</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#Fuzzysearch">Fuzzysearch</a></li><li><a href="global.html#isArtist">isArtist</a></li><li><a href="global.html#removeDupliactes">removeDupliactes</a></li><li><a href="global.html#search">search</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Apr 10 2020 01:39:40 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

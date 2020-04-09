@@ -19,6 +19,7 @@
         "gridfs-stream": "^1.1.1",
         "is-empty": "^1.2.0",
         "joi": "^14.3.1",
+        "jsdoc": "^3.6.4",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.9.4",
         "mongoose-fuzzy-searching": "^1.1.9",
@@ -39,7 +40,8 @@
     },
     "scripts": {
         "test": "jest",
-        "start": "node server.js"
+        "start": "node server.js",
+        "doc": "jsdoc -c jsdoc.json"
     },
     "repository": {
         "type": "git",
