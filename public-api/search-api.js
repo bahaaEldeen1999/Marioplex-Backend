@@ -354,7 +354,7 @@ module.exports = Search;
  * search for name in schema
  * @param {string} name 
  * @param {string} field 
- * @param {string} schema
+ * @param {Array<object>} schema
  * @returns {Array<object>} 
  */
 function search(name, field, schema) {
@@ -372,7 +372,7 @@ function search(name, field, schema) {
  * use fuzzy search to search for field in schema with name
  * @param {string} name 
  * @param {string} field 
- * @param {string} schema
+ * @param {Array<object>} schema
  * @returns {Array<object>}  
  */
 
