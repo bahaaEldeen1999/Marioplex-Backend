@@ -74,6 +74,39 @@ const MockTrack =  {
             valence:track.valence
         }
         return audioFeatures;
+    },
+    createTrack: function(url, Name, TrackNumber, AvailableMarkets, artistID, albumID, duration){
+        let newTrack = {
+            
+                url: url,
+                images: [],
+                duration:duration,
+                availableMarkets: AvailableMarkets,
+                trackNumber: TrackNumber,
+                name: Name,
+                artistId: artistID,
+                albumId: albumID,
+                discNumber: 1,
+                explicit: false,
+                type: "Track",
+                acousticness: Math.floor(Math.random()*100),
+                danceability:  Math.floor(Math.random()*100),
+                energy:  Math.floor(Math.random()*100),
+                instrumentalness:  Math.floor(Math.random()*100),
+                key:  Math.floor(Math.random()*100),
+                liveness:  Math.floor(Math.random()*100),
+                loudness:  Math.floor(Math.random()*100),
+                mode:  Math.floor(Math.random()*100),
+                speechiness:  Math.floor(Math.random()*100),
+                tempo:  Math.floor(Math.random()*100),
+                timeSignature: Date.now(),
+                valence:  Math.floor(Math.random()*100),
+                like: 0
+    
+            
+        }
+        this.tracks.push(newTrack);
+        return newTrack;
     }
     
 }
@@ -164,5 +197,10 @@ test('get audio features for track with id 1',()=>{
            "tempo": undefined,
            "valence": undefined,
           });
+})
+
+test('create track',()=>{
+   TrackTest.createTrack("url", "Name", 1, ["eg"], "1", "1", 1000);
+   expect(TrackTest.tracks.length).toEqual(6);
 })
 

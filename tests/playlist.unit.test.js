@@ -348,7 +348,6 @@ const MockPlaylist =  {
             hasTracks: tracks,
             action: 'reorder Tracks'
         });
-        console.log(tracks);
         return playlist;
 
     },
