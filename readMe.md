@@ -1,7 +1,10 @@
 ## run for developers <br/>
 ### first install the devDependencies and dependencies by running
 > npm install
-
+### then set node enviroment to be running in production , if you are on  linux run
+> export NODE_ENV=development
+### if you are on windows run
+> set NODE_ENV=development
 ### then run the nodeJS seerver <br/>
 > node server.js
 
