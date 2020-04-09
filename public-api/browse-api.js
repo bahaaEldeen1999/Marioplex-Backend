@@ -6,10 +6,14 @@ const connection = require('../db-connection/connection');
 const User = require('./user-api');
 const track = require('./track-api');
 const playlist = require('./playlist-api');
-
+/** @namespace */
 const Browse = {
-
-    //get category by id
+    /**
+     * get category by id
+     * @param {string} categoryID - the id of the category
+     * @returns {Object} 
+     */
+    
     getCategoryById: async function(categoryID) {
 
         let category = await categoryDocument.findById(categoryID, (err, category) => {
@@ -19,7 +23,11 @@ const Browse = {
         return category;
 
     },
-    // get categories
+    /**
+     * get categories
+     * @returns {Array<object>}
+     */
+
     getCategoryies: async function() {
 
         let category = await categoryDocument.find({}, (err, category) => {

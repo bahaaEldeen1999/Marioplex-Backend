@@ -1,5 +1,12 @@
 const jwt=require('jsonwebtoken');
 const jwtSecret = require('../config/jwt-key').secret;
+/**
+ * check if the user is authenticated ot not from jwt header  (MIDDLEWARE)
+ * @param {object} req 
+ * @param {object} res 
+ * @param {function} next
+ * @returns {void} 
+ */
 function auth(req,res,next){
 
   // check the jwt token user sends in the header

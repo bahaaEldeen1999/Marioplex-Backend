@@ -22,7 +22,7 @@ router.post('/sign_up', (req, res) => {
         birthday: joi.string().required(),
         username: joi.string().required()
     });
-
+    
     joi.validate(req.body, shcema, (err, result) => {
         if (err) {
             // if not valid set status to 500
