@@ -50,3 +50,15 @@ test('get category with id "5e8668e200200555ec564a3d"', () => {
 
     )
 })
+
+test('get category with id "5e8668e55ec564a3d"', () => {
+    expect(CategoryTest.getCategoryById("5e8660555ec564a3d")).toEqual(0)
+})
+test('get category with id "5e8668e55ec564a3d"', () => {
+    CategoryTest.catgories = [];
+    expect(CategoryTest.getCategoryById("5e8660555ec564a3d")).toEqual(0)
+})
+test('get category with id "5e8668e55ec564a3d"', () => {
+    CategoryTest.catgories = [];
+    expect(CategoryTest.getCategories()).toEqual(0)
+})

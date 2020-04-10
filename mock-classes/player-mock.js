@@ -10,17 +10,6 @@ const MockPlayer = {
                     }
                 }
             }
-        } else {
-            for (let i = user.queue.queuIndex + 1; i < hasTracks.length; i++) {
-                if (trackID == hasTracks[i].trackId) {
-
-                    return {
-                        "next_track": i + 1 < hasTracks.length ? user.queue.tracksInQueue[user.queue.queuIndex] : 0, //wrap around
-                        "prev_track": i - 1 >= user.queue.queuIndex + 1 ? hasTracks[i - 1] : hasTracks[hasTracks.length - 1], // wrap around
-                        "last_playlist_track_index": i,
-                    }
-                }
-            }
         }
         return {
             "next_track": undefined,
@@ -28,9 +17,7 @@ const MockPlayer = {
         }
     },
     skipNext: function(user) {
-        if (!user.player) user.player = {};
-        if (!user.player.next_track) user.player.next_track = {};
-        if (!user.player.prev_track) user.player.prev_track = {};
+        if (!user.player) return 0;
         user.player.current_track = user.player.next_track;
         if (user.queue.queuIndex == -1) { // no element add by add to queue
             user.player.prev_track['trackId'] = user.queue.tracksInQueue[user.player["last_playlist_track_index"]].trackId;
@@ -78,9 +65,7 @@ const MockPlayer = {
 
     //skip to previous
     skipPrevious: function(user) {
-        if (!user.player) user.player = {};
-        if (!user.player.next_track) user.player.next_track = {};
-        if (!user.player.prev_track) user.player.prev_track = {};
+        if (!user.player) return 0;
         const current = user.player.current_track;
         const lastplaylist = user.queue.tracksInQueue[user.player["last_playlist_track_index"]].trackId;
         if (lastplaylist + 1 == current + 1) {
@@ -162,7 +147,7 @@ const MockPlayer = {
     },
     addRecentTrack: async function(user, trackID) {
         if (user.playHistory) {
-            if (user.playHistory.length > 50) user.playHistory.pop();
+            if (user.playHistory.length > 10) user.playHistory.pop(); // to can test others case
             user.playHistory.unshift({
                 trackId: trackID
 
@@ -228,7 +213,8 @@ const MockPlayer = {
         } else {
             const album = source;
             if (!album) return 0;
-            sourceName = album.name;
+            //            sourceName = album.name;
+            user.player.playlistId = source;
             user.queue = {};
             user.queue.queuIndex = -1;
             user.queue.tracksInQueue = [];
@@ -250,11 +236,6 @@ const MockPlayer = {
         }
     },
 
-    //random function
-    rondom: function(low, high) {
-        const randomValue = Math.floor(Math.random() * (high - low + 1) + low);
-        return randomValue;
-    },
     // to random tracks which add by playlist
 
     // to make queue same playlist order
@@ -264,7 +245,7 @@ const MockPlayer = {
             const playlist = user.player.playlistId;
             if (!playlist.snapshot || playlist.snapshot.length == 0) playlist.snapshot = [{ hasTracks: [] }];
             if (playlist.snapshot[playlist.snapshot.length - 1].hasTracks.length == 0) {
-                return this.setNextPrevCurrent(user, track_last_playlist);
+                return 0;
             }
             let i = user.queue.queuIndex + 1;
             for (let j = 0; j < playlist.snapshot[playlist.snapshot.length - 1].hasTracks.length; j++) {
@@ -277,7 +258,7 @@ const MockPlayer = {
             const album = user.player.playlistId;
             if (!album) return 0;
             if (!album.hasTracks) {
-                return this.setNextPrevCurrent(user, track_last_playlist);
+                return 0;
             }
             let i = 0;
             for (let track of album.hasTracks) {
@@ -290,8 +271,8 @@ const MockPlayer = {
     },
     //shuffle
     setShuffle: function(state, user) {
-        if (user.queue.tracksInQueue) {
-            if (state == 'true') {
+        if (user.queue && user.queue.tracksInQueue) {
+            if (state == 'true' || state == true) {
                 user.player['is_shuffled'] = true;
                 return 1;
             } else {
@@ -303,9 +284,7 @@ const MockPlayer = {
         return 0
     },
     setNextPrevCurrent: function(user, lastTrack) {
-        if (!user.player) user.player = {};
-        if (!user.player.next_track) user.player.next_track = {};
-        if (!user.player.prev_track) user.player.prev_track = {};
+        if (!user.player) return 0;
         for (let i = user.queue.queuIndex + 1; i < user.queue.tracksInQueue.length; i++) {
             if (user.queue.tracksInQueue[i].trackId + 1 == lastTrack + 1) {
                 user.player["last_playlist_track_index"] = i;
@@ -319,6 +298,7 @@ const MockPlayer = {
                 return 1;
             }
         }
+        return 0
     },
     getQueue: function(user) {
         const queue = user.queue;
@@ -335,10 +315,7 @@ const MockPlayer = {
         // get tracks that was next in playlist
         for (let i = lastplaylistIndex + 1; i < queue.tracksInQueue.length; i++) {
 
-            if (i == queueIndex + 1)
-                tracks.push(user.queue.tracksInQueue[i]);
-            else
-                tracks.push(user.queue.tracksInQueue[i]);
+            tracks.push(user.queue.tracksInQueue[i]);
         }
         //if repeat should display all the queue
         if (user.player.is_repeat || user.player.is_shuffled) {
@@ -370,8 +347,10 @@ const MockPlayer = {
                     trackId: trackID,
                     isQueue: true,
                 }];
+                user.player = {}; // 
                 user.queue.queuIndex = 0;
-                user.player.next_track = user.queue.tracksInQueue[0].trackId;
+                //console.log(user.player["next_track"])
+                user.player["next_track"] = user.queue.tracksInQueue[0].trackId;
                 user.player["last_playlist_track_index"]++;
                 return 1;
             } else {
