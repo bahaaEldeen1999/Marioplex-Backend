@@ -83,10 +83,13 @@
 > if need download package package and have problem get the link of it can found anthor way which can help you
 > https://www.npmjs.com/package/{packageName}
 ## to generate functional documentation 
->npm install
+### to install package
+>  npm install
+###  to run code 
 > npm run doc
 ## to generate apidoc 
->use npm install or  npm install -g apidoc
+>use npm install
+> or npm install -g apidoc
 ### public
 >npx apidoc -i .\Public_code -e node_modules -o .\PublicHtml
 ### private
