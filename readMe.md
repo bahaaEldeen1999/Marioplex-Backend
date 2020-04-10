@@ -7,6 +7,8 @@
 >if you work in online conection string you do not need to download mongodb onely create connection string online
 >but if you need to connect  to localhost connection you should download and run server by create folder named data create folder in data named  db in c:\ and write in cmd  in data "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" 
 > download https://www.mongodb.com/download-center
+> to download for linux  choose if(ubuntu or amazon or ...)
+> https://docs.mongodb.com/manual/administration/install-on-linux/ 
 ### optional download mongodb compass
 > to see data in tables
 > write connection string  in it 
@@ -19,7 +21,6 @@
 ### we use packages 
 #### bcrypt
 > download by command line -> npm i bcrypt
-
 #### body-parser
 > download by command line -> npm i body-parser
 #### cookie-parser
@@ -81,6 +82,15 @@
 >if has any problem when install by npm install delete package-lock.json & node-modules
 > if need download package package and have problem get the link of it can found anthor way which can help you
 > https://www.npmjs.com/package/{packageName}
+## to generate functional documentation 
+>npm install
+> npm run doc
+## to generate apidoc 
+>use npm install or  npm install -g apidoc
+### public
+>npx apidoc -i .\Public_code -e node_modules -o .\PublicHtml
+### private
+> npx apidoc -i .\Private_code -e node_modules -o .\PrivateHtml
 ## to run unit test 
 > npm run test -> which run all unit tests 
 > using jest package
@@ -95,7 +105,6 @@
 > set NODE_ENV=development
 ### then run the nodeJS seerver <br/>
 > node server.js
-
 ## run for production
 
 ### first install only the dependecies by running
