@@ -1,11 +1,11 @@
 ## pre-requisites installation instraction
 ### frist Node.js 
->Open source, cross-platform runtime environment for developing server-side web applications. Node.js includes the npm command line tool.
+>Open source, cross-platform runtime environment for developing server-side web applications. Node.js includes the >npm command line tool.
 > download https://nodejs.org
 ### download mongodb
 >it is a no SQL database
 >if you work in online conection string you do not need to download mongodb onely create connection string online
->but if you need to connect  to localhost connection you should download and run server by create folder named data create folder in data named  db in c:\ and write in cmd  in data "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" 
+>but if you need to connect  to localhost connection you should download and run server by create folder named data >create folder in data named  db in c:\ and write in cmd  in data "C:\Program Files\MongoDB\Server\3.4\bin\mongod.>exe" 
 > download https://www.mongodb.com/download-center
 > to download for linux  choose if(ubuntu or amazon or ...)
 > https://docs.mongodb.com/manual/administration/install-on-linux/ 
@@ -90,9 +90,9 @@
 ## to generate apidoc 
 >use npm install
 > or npm install -g apidoc
-### public
+### generate public in repo apidoc in folder ApiDocumentation (run in its path)
 >npx apidoc -i .\Public_code -e node_modules -o .\PublicHtml
-### private
+### generate private in repo apidoc in folder ApiDocumentation (run in its path)
 > npx apidoc -i .\Private_code -e node_modules -o .\PrivateHtml
 ## to run unit test 
 > npm run test -> which run all unit tests 
@@ -118,9 +118,12 @@
 > set NODE_ENV=production
 ### then run the nodeJS seerver <br/>
 > node server.js
-
+## E2E test 
+> we use postman in it
+## environmental variables
+> if you need to change connection sting in our project folder ./db-connection/connection.js
+> in next phase we will make it change in terminal
 ## generate seeds
-
 ### first install node-mongo-seeds globally by running
 > npm install -g node-mongo-seeds
 ### then generate the seeds on the default database by running
