@@ -18,3 +18,10 @@
 > set NODE_ENV=production
 ### then run the nodeJS seerver <br/>
 > node server.js
+
+## generate seeds
+
+### first make sure that you've installed the devDependencies and dependencies if you don't then run
+> npm install
+### then generate the seeds on the default database by running
+> seed
