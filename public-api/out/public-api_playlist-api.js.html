@@ -1,4 +1,32 @@
-const { user: userDocument, artist: artistDocument, album: albumDocument, track: trackDocument, playlist: playlistDocument, category: categoryDocument } = require('../models/db');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public-api/playlist-api.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public-api/playlist-api.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { user: userDocument, artist: artistDocument, album: albumDocument, track: trackDocument, playlist: playlistDocument, category: categoryDocument } = require('../models/db');
 
 
 const mongoose = require('mongoose');
@@ -28,7 +56,7 @@ const Playlist = {
     },
     /**
     * get popular playlists
-    * @returns {array<object>} - array of playlists' object
+    * @returns {array&lt;object>} - array of playlists' object
     */
     //get popular playlists based on popularity
     getPopularPlaylists: async function() {
@@ -37,9 +65,9 @@ const Playlist = {
         const playlists = await playlistDocument.find({}).sort('-popularity')
         if (playlists) {
             var limit; // to limit the num of playlists by frist 20 only but should check if num of albums less than 10  
-            if (playlists.length < 20) limit = playlists.length;
+            if (playlists.length &lt; 20) limit = playlists.length;
             else limit = 20;
-            for (let i = 0; i < limit; i++) {
+            for (let i = 0; i &lt; limit; i++) {
                 const user1 = await userDocument.findById(playlists[i].ownerId);
                 replaylists.push({ owner: { id: playlists[i].ownerId, type: "user", name: user1.displayName }, collaborative: playlists[i].collaborative, type: 'playlist', name: playlists[i].name, images: playlists[i].images, id: playlists[i]._id, Description: playlists[i].Description, isPublic: playlists[i].isPublic });
             }
@@ -52,7 +80,7 @@ const Playlist = {
     * @param {string} playlistId - playlist id
     * @param {string} snapshotID
     * @param {Object} user -user object
-    * @returns {array<object>|0} - array of objects of a playlist and it's tracks
+    * @returns {array&lt;object>|0} - array of objects of a playlist and it's tracks
     */
     //for routes
     //get playlist with tracks
@@ -66,7 +94,7 @@ const Playlist = {
             var tracks = [];
             let snapshot;
             let found = false;
-            for (let i = 0; i < playlist.snapshot.length; i++) {
+            for (let i = 0; i &lt; playlist.snapshot.length; i++) {
                 if (playlist.snapshot[i]._id == snapshotID) {
                     snapshot = i;
                     found = true;
@@ -74,7 +102,7 @@ const Playlist = {
             }
             if (!found) { snapshot = playlist.snapshot.length - 1; }
             if (playlist.snapshot[snapshot] != undefined) {
-                for (let i = 0; i < playlist.snapshot[snapshot].hasTracks.length; i++) {
+                for (let i = 0; i &lt; playlist.snapshot[snapshot].hasTracks.length; i++) {
                     const track1 = await Track.getTrack(playlist.snapshot[snapshot].hasTracks[i]);
                     const artistId = track1.artistId;
                     const albumId = track1.albumId;
@@ -142,7 +170,7 @@ const Playlist = {
     * @returns {number} 
     */
     findIndexOfTrackInPlaylist: async function(trackId, tplaylist) {
-        for (let i = 0; i < tplaylist.hasTracks.length; i++) {
+        for (let i = 0; i &lt; tplaylist.hasTracks.length; i++) {
             if (tplaylist.hasTracks[i].trackId == trackId)
                 return i;
         }
@@ -161,7 +189,7 @@ const Playlist = {
         if (playlist) {
             const userHasPlaylist = await Playlist.checkIfUserHasPlaylist(user, playlistId);
             if (userHasPlaylist) {
-                for (let i = 0; i < user.createPlaylist.length; i++) {
+                for (let i = 0; i &lt; user.createPlaylist.length; i++) {
 
                     if (user.createPlaylist[i].playListId == playlistId) {
 
@@ -252,7 +280,7 @@ const Playlist = {
         }
         if (user.followPlaylist) {
 
-            for (let i = 0; i < user.followPlaylist.length; i++) {
+            for (let i = 0; i &lt; user.followPlaylist.length; i++) {
 
                 if (user.followPlaylist[i].playListId == playlistID) {
 
@@ -267,7 +295,7 @@ const Playlist = {
     /**
     * user adds track(s) to a specific playlist
     * @param {string} playlistID - playlist id 
-    * @param {array<string>} tracksIds - array of tracks' id
+    * @param {array&lt;string>} tracksIds - array of tracks' id
     * @returns {Object|0} - playlist object
     */
     //user adds track(s) to a specific playlist
@@ -280,11 +308,11 @@ const Playlist = {
         let len = playlist.snapshot.length;
         let tracks = [];
         if (len) {
-            for (let i = 0; i < playlist.snapshot[len - 1].hasTracks.length; i++) {
+            for (let i = 0; i &lt; playlist.snapshot[len - 1].hasTracks.length; i++) {
                 tracks.push(playlist.snapshot[len - 1].hasTracks[i]);
             }
         }
-        for (let i = 0; i < tracksIds.length; i++) {
+        for (let i = 0; i &lt; tracksIds.length; i++) {
             // check if trackid is valid mongoose object id
             if (!mongoose.Types.ObjectId.isValid(tracksIds[i])) return 0;
             tracks.push(tracksIds[i]);
@@ -329,7 +357,7 @@ const Playlist = {
     * @param {number} [limit] - the maximum number of objects to return
     * @param {number} [offset] - the index of the first object to return
     * @param {boolean} isuser - if the user is the owner of the playlist
-    * @returns {array<object>|0} - array of playlists' object
+    * @returns {array&lt;object>|0} - array of playlists' object
     */
     //get playlists of a user
     //params:userId, limit, offset, isuser
@@ -338,7 +366,7 @@ const Playlist = {
         if (!user) return 0;
         let playlistsIds = [];
         let playlists = [];
-        for (var i = 0; i < user.followPlaylist.length; i++) {
+        for (var i = 0; i &lt; user.followPlaylist.length; i++) {
             if (isuser) {
                 playlistsIds.push(user.followPlaylist[i].playListId);
             } else {
@@ -347,7 +375,7 @@ const Playlist = {
                 }
             }
         }
-        for (var i = 0; i < playlistsIds.length; i++) {
+        for (var i = 0; i &lt; playlistsIds.length; i++) {
             let playlist = await this.getPlaylist(playlistsIds[i]);
             let owner = await userDocument.findById(playlist.ownerId);
             playlists.push({ id: playlist._id, name: playlist.name, ownerId: playlist.ownerId, owner: owner.displayName, collaborative: playlist.collaborative, isPublic: playlist.isPublic, images: playlist.images });
@@ -355,12 +383,12 @@ const Playlist = {
         let start = 0;
         let end = playlists.length;
         if (offset != undefined) {
-            if (offset >= 0 && offset <= playlists.length) {
+            if (offset >= 0 &amp;&amp; offset &lt;= playlists.length) {
                 start = offset;
             }
         }
         if (limit != undefined) {
-            if ((start + limit) > 0 && (start + limit) <= playlists.length) {
+            if ((start + limit) > 0 &amp;&amp; (start + limit) &lt;= playlists.length) {
                 end = start + limit;
             }
         }
@@ -382,7 +410,7 @@ const Playlist = {
         playlist.collaborative = !playlist.collaborative;
         if (playlist.collaborative) {
             playlist.isPublic = false;
-            for (var i = 0; i < user.createPlaylist.length; i++) {
+            for (var i = 0; i &lt; user.createPlaylist.length; i++) {
                 if (user.createPlaylist[i].playListId == playlistID) {
                     user.createPlaylist[i].isPrivate = true;
                     await user.save();
@@ -409,7 +437,7 @@ const Playlist = {
         if (playlist.collaborative) { return false; }
         playlist.isPublic = !playlist.isPublic;
 
-        for (var i = 0; i < user.createPlaylist.length; i++) {
+        for (var i = 0; i &lt; user.createPlaylist.length; i++) {
             if (user.createPlaylist[i].playListId == playlistID) {
                 user.createPlaylist[i].isPrivate = !user.createPlaylist[i].isPrivate;
                 await user.save();
@@ -418,7 +446,7 @@ const Playlist = {
             }
         }
 
-        for (var i = 0; i < user.followPlaylist.length; i++) {
+        for (var i = 0; i &lt; user.followPlaylist.length; i++) {
             if (user.followPlaylist[i].playListId == playlistID) {
                 user.followPlaylist[i].isPrivate = !user.followPlaylist[i].isPrivate;
                 await user.save();
@@ -432,7 +460,7 @@ const Playlist = {
     /**
     * get playlist tracks (WITHOUT DETAILS OF THESE TRACKS)
     * @param {string} playlistID - playlist id
-    * @returns {array<object>|0} -array of tracks' object 
+    * @returns {array&lt;object>|0} -array of tracks' object 
     */
     //get playlist tracks (WITHOUT DETAILS OF THESE TRACKS)
     //params:playlistID
@@ -442,7 +470,7 @@ const Playlist = {
         let tracks = [];
         let len = playlist.snapshot.length;
         if (len == 0) { return 0; }
-        for (var i = 0; i < playlist.snapshot[len - 1].hasTracks.length; i++) {
+        for (var i = 0; i &lt; playlist.snapshot[len - 1].hasTracks.length; i++) {
             let track = await Track.getTrack(playlist.snapshot[len - 1].hasTracks[i]);
             if (track) {
                 tracks.push(track);
@@ -455,8 +483,8 @@ const Playlist = {
     * remove tracks from a given playlist
     * @param {string} playlistID - playlist id
     * @param {string} snapshotID - snapshot id
-    * @param {array<string>} tracksids -array of tracks' id
-    * @returns {array<object>|0} -array of tracks' object 
+    * @param {array&lt;string>} tracksids -array of tracks' id
+    * @returns {array&lt;object>|0} -array of tracks' object 
     */
     //remove tracks from a given playlist
     //params:playlistID, tracksids, snapshotid
@@ -468,7 +496,7 @@ const Playlist = {
         if (len == 0) { return 0; }
         let found = false;
         if (snapshotid != undefined) {
-            for (var i = 0; i < playlist.snapshot.length; i++) {
+            for (var i = 0; i &lt; playlist.snapshot.length; i++) {
                 if (playlist.snapshot[i]._id == snapshotid) {
                     len = i + 1;
                     found = true;
@@ -477,14 +505,14 @@ const Playlist = {
             }
             if (!found) { return 0; }
         }
-        for (var i = 0; i < playlist.snapshot[len - 1].hasTracks.length; i++) {
+        for (var i = 0; i &lt; playlist.snapshot[len - 1].hasTracks.length; i++) {
             let track = await Track.getTrack(playlist.snapshot[len - 1].hasTracks[i]);
             if (track) {
                 tracks.push(track);
             }
         }
-        for (var i = 0; i < tracksids.length; i++) {
-            for (var j = 0; j < tracks.length; j++) {
+        for (var i = 0; i &lt; tracksids.length; i++) {
+            for (var j = 0; j &lt; tracks.length; j++) {
                 if (tracksids[i] == tracks[j]._id) {
                     tracks.splice(j, 1);
                 }
@@ -517,7 +545,7 @@ const Playlist = {
         if (len == 0) { return 0; }
         let found = false;
         if (snapshotid != undefined) {
-            for (var i = 0; i < playlist.snapshot.length; i++) {
+            for (var i = 0; i &lt; playlist.snapshot.length; i++) {
                 if (playlist.snapshot[i]._id == snapshotid) {
                     len = i + 1;
                     found = true;
@@ -526,7 +554,7 @@ const Playlist = {
             }
             if (!found) { return 0; }
         }
-        for (var i = 0; i < playlist.snapshot[len - 1].hasTracks.length; i++) {
+        for (var i = 0; i &lt; playlist.snapshot[len - 1].hasTracks.length; i++) {
             // to check track still exist in DB
             let track = await Track.getTrack(playlist.snapshot[len - 1].hasTracks[i]);
             if (track) {
@@ -536,14 +564,14 @@ const Playlist = {
         let orderedtracks = [];
         // check start is in range
         start--;
-        let stindex = Number(start) < 1 ? 0 : Number(start) > tracks.length ? tracks.length - 1 : Number(start);
+        let stindex = Number(start) &lt; 1 ? 0 : Number(start) > tracks.length ? tracks.length - 1 : Number(start);
         // check that lenght in range
         let endindex = (!length) ? Number(stindex + 1) : (stindex + length - 1);
         endindex = endindex > tracks.length - 1 ? tracks.length - 1 : endindex;
         before--;
-        before = before < 0 ? 0 : before > tracks.length - 1 ? tracks.length - 1 : before;
+        before = before &lt; 0 ? 0 : before > tracks.length - 1 ? tracks.length - 1 : before;
         // add tracks in range to order tracks
-        for (let i = stindex; i <= endindex; i++) {
+        for (let i = stindex; i &lt;= endindex; i++) {
             orderedtracks.push(tracks[i]);
         }
         // remove tracks in this range from tracks in snashot
@@ -563,4 +591,26 @@ const Playlist = {
 
 
 
-module.exports = Playlist;
+module.exports = Playlist;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Album.html">Album</a></li><li><a href="Artist.html">Artist</a></li><li><a href="Browse.html">Browse</a></li><li><a href="Library.html">Library</a></li><li><a href="Player.html">Player</a></li><li><a href="Playlist.html">Playlist</a></li><li><a href="Search.html">Search</a></li><li><a href="Track.html">Track</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#auth">auth</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#Fuzzysearch">Fuzzysearch</a></li><li><a href="global.html#isArtist">isArtist</a></li><li><a href="global.html#removeDupliactes">removeDupliactes</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#sendEmail">sendEmail</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Apr 10 2020 13:06:25 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
