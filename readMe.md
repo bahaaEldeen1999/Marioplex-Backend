@@ -21,7 +21,7 @@
 
 ## generate seeds
 
-### first make sure that you've installed the devDependencies and dependencies if you don't then run
-> npm install
+### first install node-mongo-seeds globally by running
+> npm install -g node-mongo-seeds
 ### then generate the seeds on the default database by running
 > seed
