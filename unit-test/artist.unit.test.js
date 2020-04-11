@@ -506,3 +506,585 @@ test('Create Artist',()=>{
         addTracks: []
       });
  })
+
+ // fix branching 
+ let ArtistTest2 = {}
+ ArtistTest2 = Object.assign(ArtistTest2,MockArtist) ;
+ArtistTest2.Artists = [
+ {  id:"1",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:100,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "1"  ,
+    addAlbums:[{
+      albumId: "1"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "1"
+      //ref: 'Track'
+    },{
+        trackId: "2"
+    }]
+},{
+    id:"2",
+    images:[] ,
+    info:"NOUR ARTIST" ,
+    popularity:200,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nour",
+},
+{  id:"3",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"4",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"5",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"6",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"7",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"8",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"9",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"10",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"11",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"12",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"13",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"14",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"15",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"16",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"17",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"18",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"19",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"20",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"21",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    }],
+    addTracks:[{
+      trackId: "5"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    }]
+},
+{  id:"22",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+    addAlbums:[{
+      albumId: "2"
+      //ref: 'Album'
+    },
+    {
+        albumId: "3"
+        //ref: 'Album'
+      }],
+    addTracks:[{
+      trackId: "1"
+      //ref: 'Track'
+    },{
+        trackId: "6"
+    },
+    {
+        trackId: "2"
+        //ref: 'Track'
+      },
+      {
+        trackId: "3"
+        //ref: 'Track'
+      },
+      {
+        trackId: "4"
+        //ref: 'Track'
+      }]
+},
+{  id:"23",
+    images:[] ,
+    info:"NADA ARTIST" ,
+    popularity:500,
+    genre:['a'] ,
+    type:"artist" ,
+    Name:"Nada",
+    userId: "3"  ,
+   
+},
+
+]
+let ArtistTest3 = {}
+ ArtistTest3 = Object.assign(ArtistTest3,MockArtist) ;
+ ArtistTest3.Artists = []
+
+ const Albums2=[
+    {
+        id:"1",
+        artistId:"22" ,
+        name:"KIDS" ,
+        popularity:10 ,
+        genre:"POP" ,
+        releaseDate:"2-1-2000" ,
+        availableMarkets: ["EG,US"] ,
+        hasTracks:[{
+          trackId: "1"
+        },{
+            trackId: "2"
+        }]
+        
+    },
+    {
+        id:"2",
+        artistId:"22" ,
+        name:"KIDS" ,
+        popularity:10 ,
+        genre:"POP" ,
+        releaseDate:"2-1-2000" ,
+        availableMarkets: "EG,US" ,
+        albumType:"Album",
+        hasTracks:[{
+          trackId: "5"
+        },{
+            trackId: "6"
+        }]
+        
+    },
+    {
+        id:"3",
+        artistId:"22" ,
+        name:"KIDS" ,
+        popularity:10 ,
+        genre:"POP" ,
+        releaseDate:"2-1-2000" ,
+        availableMarkets: "EG,US" ,
+        albumType:"Album",
+        hasTracks:[{
+          trackId: "5"
+        },{
+            trackId: "6"
+        }]
+        
+    }
+]
+const Tracks2=[
+    {
+    id:"1",
+    artistId:"1",
+    albumId:"1",
+    availableMarkets:["EG"] ,
+    popularity:2000 ,
+    name:"HELLO" 
+    },
+    {
+        id:"2",
+        artistId:"1",
+        albumId:"1",
+        availableMarkets:["EG","US"] ,
+        popularity:200 ,
+        name:"OHAYO" 
+        },
+        {
+            id:"3",
+            artistId:"1",
+            albumId:"1",
+            availableMarkets:["EG","US"] ,
+            popularity:5 ,
+            name:"OHAYO"
+         
+            },
+            {
+                id:"4",
+                artistId:"1",
+                albumId:"1",
+                availableMarkets:["EG","US"] ,
+                popularity:100 ,
+                name:"OHAYO" 
+                },
+                
+            
+
+    ]
+test('get popular artist for artist with more than 20',()=>{
+    expect(ArtistTest2.getPopularArtists()).toBeTruthy();
+})
+
+test('get popular artist for db with 0 artist',()=>{
+    expect(ArtistTest3.getPopularArtists()).toBeTruthy();
+})
+
+test('check artist with no albums has album',()=>{
+    expect(ArtistTest2.checkArtisthasAlbum('23','1')).toBeFalsy()
+})
+
+test('add album to non existing artist',()=>{
+    expect(ArtistTest2.addAlbum('233')).toBeFalsy()
+})
+
+test('get album for non existing artist',()=>{
+    expect(ArtistTest2.getAlbums('233')).toBeFalsy()
+})
+
+test('get album for  artist with wrong groups and right limit',()=>{
+    expect(ArtistTest2.getAlbums('20',['e'],"e",1,0,Albums2)).toBeTruthy()
+})
+
+test('get album for  artist with wrong groups and wrong offser limit',()=>{
+    expect(ArtistTest2.getAlbums('20',['e'],"e",1,10000,Albums2)).toBeTruthy()
+})
+
+test('get related artists of db without artists',()=>{
+    expect(ArtistTest3.getRelatedArtists()).toBeFalsy()
+})
+
+test('get related artists of db more than 20 artist',()=>{
+    expect(ArtistTest2.getRelatedArtists('20')).toBeTruthy()
+})
+
+test('get albums with undefined group and defined country not in available markets',()=>{
+    expect(ArtistTest2.getAlbums('22',undefined,"fe",1,0,Albums2)).toBeTruthy();
+})
+
+test('get albums with defined group and undefined country not in available markets',()=>{
+    expect(ArtistTest2.getAlbums('22',["nnnnn"],undefined,1,0,Albums2)).toBeTruthy();
+})
+
+test('get albums with undefined group and undefined country not in available markets',()=>{
+    expect(ArtistTest2.getAlbums('22',undefined,undefined,1,0,Albums2)).toBeTruthy();
+})
+
+test('get top tracks not in country',()=>{
+    expect(ArtistTest2.getTopTracks('22',"fee",Tracks2)).toBeTruthy();
+})

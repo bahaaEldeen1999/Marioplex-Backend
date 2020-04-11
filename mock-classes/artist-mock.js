@@ -30,7 +30,7 @@ const MockArtist = {
         var reArtists = []
         let artists=this.Artists;
         artists.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
-        if (artists) {
+        if (artists.length > 0) {
             var limit; // to limit the num of artists by frist 20 only but should check if num of albums less than 10  
             if (artists.length < 20) limit = artists.length;
             else limit = 20;
@@ -170,7 +170,7 @@ const MockArtist = {
         let Artists=this.Artists;
     
         let artist =  this.getArtist(artistID);
-        if (!Artists) return 0;
+        if (Artists.length == 0) return 0;
         if (!artist) return 0;
         let RelatedArtists = [];
         //FILTER THE ARTISTS BASED ON THEIR GENRE
