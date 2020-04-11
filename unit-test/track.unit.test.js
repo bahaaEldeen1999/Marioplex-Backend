@@ -30,9 +30,36 @@ const user = {
         }
     ]
 }
+const user2 = {
+    id:"2"
+}
+// console.log(TrackTest.userLikeTrack(user2, "1"))
+// console.log(user2)
+// console.log(TrackTest.userLikeTrack(user2, "1"))
 
 test('get track with id 2', () => {
     expect(TrackTest.getTrack("2")).toEqual({ trackId: "2" });
+})
+
+test('get tracks all correct ids',()=>{
+    expect(TrackTest.getTracks(["1","2","3"])).toEqual([
+         {
+        trackId: "1",
+        durationMs: 2000,
+        danceability: 0.2,
+        key: 12,
+        mode: "fun"
+    },
+    {
+        trackId: "2"
+    },
+    {
+        trackId: "3"
+    }])
+})
+
+test('get tracks all correct ids exxpet one ',()=>{
+    expect(TrackTest.getTracks(["1","2","53"])).toBeFalsy();
 })
 
 test('get track with id 10 which is not found', () => {
@@ -47,6 +74,11 @@ test('check if user like track 1 which is true', () => {
 test('check if user like track 5 which is false', () => {
     expect(TrackTest.checkIfUserLikeTrack(user, "5")).toBeFalsy();
 })
+
+test('check if user 2 like track 1 which is false', () => {
+    expect(TrackTest.checkIfUserLikeTrack(user2, "1")).toBeFalsy();
+})
+
 
 
 test('user like new track with id 3', () => {
@@ -66,6 +98,14 @@ test('user unlike    track with id 3 which he already unliked', () => {
 })
 
 
+test('user2 like track 1', () => {
+    expect(TrackTest.userLikeTrack(user2, "1")).toBeTruthy();
+})
+
+test('user2 unlike track 1', () => {
+    expect(TrackTest.userUnlikeTrack(user2, "1")).toBeTruthy();
+})
+
 test('get audio features for track with id 1', () => {
     expect(TrackTest.getAudioFeaturesTrack("1")).toEqual({
         "acousticness": undefined,
@@ -82,6 +122,10 @@ test('get audio features for track with id 1', () => {
         "tempo": undefined,
         "valence": undefined,
     });
+})
+
+test('get audio features for track with id 0 which doesnt exist', () => {
+    expect(TrackTest.getAudioFeaturesTrack("0")).toBeFalsy();
 })
 
 test('create track', () => {

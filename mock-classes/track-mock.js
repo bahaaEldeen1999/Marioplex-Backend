@@ -46,6 +46,7 @@ const MockTrack = {
         if (!this.checkIfUserLikeTrack(user, trackId)) {
             return 0;
         }
+        
         for (let i = 0; i < user.like.length; i++) {
             if (user.like[i].trackId == trackId) {
                 user.like.splice(i, 1);
