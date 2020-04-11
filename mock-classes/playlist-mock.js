@@ -115,10 +115,7 @@ const MockPlaylist =  {
             return 0;
         }
 
-        if (!isPrivate || isPrivate == 'false') {
-            isPrivate = false;
-        } else
-            isPrivate = true;
+       
         if (user.followPlaylist) {
             user.followPlaylist.push({
                 playListId: playlistID,
@@ -232,6 +229,7 @@ const MockPlaylist =  {
             }
         }
         playlists.slice(start, end);
+        console.log(playlists)
         return playlists;
     },
     changeCollaboration:  function(user, playlistID) {
