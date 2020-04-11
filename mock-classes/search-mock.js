@@ -18,7 +18,6 @@ const MockSearch = {
         getTop: function(Name) {
 
             const artist = this.getArtistProfile(Name);
-            //console.log(artist)
             if (artist) {
                 return artist[0]._id
             }
@@ -124,9 +123,9 @@ const MockSearch = {
             if (playlist.length != 0) {
                 return playlist[0];
             }
+
             let profile = this.getUserProfile(Name);
             if (profile.length != 0) {
-                // console.log(profile)
                 return profile[0];
             }
         },
@@ -309,7 +308,7 @@ function getAlbums(artistID, groups, country, limit, offset) {
 
         }
 
-        
+
 function getAlbumArtist (albumID, userID) {
 
     // connect to db and find album with the same id then return it as json file
@@ -343,7 +342,7 @@ function getAlbumArtist (albumID, userID) {
 }
 
     //search for name in schema
-    //params: field, name, schema  
+    //params: field, name, schema
 function search(name, field, schema) {
 
     const searcher = new FuzzySearch(schema, [field], {
