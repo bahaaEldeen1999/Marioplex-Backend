@@ -87,6 +87,14 @@ test('get album with artist',()=>{
         
 })
 test('get album with artist',()=>{
+    expect(AlbumTest.getAlbumArtist('1')).toEqual(0);
+        
+})
+test('get album with artist',()=>{
+    expect(AlbumTest.getAlbumArtist('10')).toEqual(0);
+        
+})
+test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('10',user)).toEqual(0);
         
 })
@@ -128,7 +136,12 @@ test('user saves album is already saved',()=>{
 test('user saves album with empty array',()=>{
     expect(AlbumTest.saveAlbum(user,[])).toEqual(2)
 })
-
+test('user saves album with empty array',()=>{
+    expect(AlbumTest.saveAlbum(user)).toEqual(2)
+})
+test('new user saves album',()=>{
+    expect(AlbumTest.saveAlbum(user2,["1"])).toEqual(1)
+})
 test('user unsaves album',()=>{
     expect(AlbumTest.unsaveAlbum(user,['2'])).toBeTruthy()
 })

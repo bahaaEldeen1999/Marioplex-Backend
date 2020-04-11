@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt')
 const MockUser = {
     user: [],
     getUserById: function(userId) {
@@ -22,11 +23,9 @@ const MockUser = {
                     user.displayName = Display_Name;
                 }
                 if (Password != undefined) {
-                    bcrypt.hash(Password, 10, (err, hash) => {
-                        if (!err) {
-                            user.password = hash;
-                        }
-                    })
+                     const p = bcrypt.hash(Password, 10)
+                    user.password = p;
+                  
                 }
                 if (Email != undefined) {
                     // check email is not used in the website
@@ -87,7 +86,11 @@ const MockUser = {
                 let artists = this.Artists.find(artist => artist.userId == user.follow[i].id);
                 if (artists) { // has error in code artists-[0] which is not correct
                     Artist.push(artists);
+                }else{
+                    continue;
                 }
+            }else{
+                continue;
             }
         }
         return Artist;
@@ -149,12 +152,17 @@ const MockUser = {
         const user = this.getUserById(userID);
         //console.log(user)
 
-        if (user.createPlaylist)
+        if (user.createPlaylist){
             for (let i = 0; i < user.createPlaylist.length; i++) {
-                if (user.createPlaylist[i].playListId == playlistId)
+                if (user.createPlaylist[i].playListId == playlistId){
                     return true;
+                }else{
+                    continue;
+                }
             }
+        }else{
         return false;
+        }
     },
     //promote user to artist
     //params: userID, info, name, genre

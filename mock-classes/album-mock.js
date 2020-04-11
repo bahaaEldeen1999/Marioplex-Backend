@@ -37,7 +37,10 @@ const MockAlbum =  {
             
 
         }
-        if (album) {
+        else{
+            return 0;
+        }
+        
             let Artist = this.getArtist(album.artistId);
             let track = this.getTracksAlbum(albumID);
             albumInfo['_id'] = album._id;
@@ -54,9 +57,7 @@ const MockAlbum =  {
             }
             console.log(albumInfo)
             return albumInfo;
-        } else {
-            return 0;
-        }
+        
         
 
 
@@ -161,7 +162,7 @@ const MockAlbum =  {
         if (albums.length == 0) { return 2; }
         let count = 0;
         for (let i = 0; i < albums.length; i++) {
-            if (this.checkIfUserSaveAlbum(user, albums[i]) == undefined) {
+            if (!this.checkIfUserSaveAlbum(user, albums[i])) {
                 if (user.saveAlbum) {
                     user.saveAlbum.push({
                         albumId: albums[i],
