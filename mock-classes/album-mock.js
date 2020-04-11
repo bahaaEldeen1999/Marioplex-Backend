@@ -32,10 +32,10 @@ const MockAlbum =  {
                     break;
                 }
             }
-        }  
+        }  else{
+            isSaved=false 
+        }
                 albumInfo['isSaved'] = isSaved;
-            
-
         }
         else{
             return 0;
@@ -55,7 +55,6 @@ const MockAlbum =  {
             } else {
                 albumInfo['track'] = []
             }
-            console.log(albumInfo)
             return albumInfo;
         
         
@@ -81,6 +80,9 @@ const MockAlbum =  {
             var album = this.getAlbumById(albumIds[i]);
             if (album) {
                 Album.push(album)
+            }
+            else{
+                continue
             }
         }
         if (Album.length > 0) {
@@ -157,6 +159,9 @@ const MockAlbum =  {
             let album = this.getAlbumById(albumID[j]);
             if (album) {
                 albums.push(albumID[j]);
+            }
+            else{
+                continue
             }
         }
         if (albums.length == 0) { return 2; }
