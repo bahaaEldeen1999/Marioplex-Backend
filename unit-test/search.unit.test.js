@@ -181,6 +181,16 @@ test('get top results of playlist', () => {
         "images": []
     })
 })
+test('get top results of name does not exist', () => {
+    expect(searchTest.getTopResults('blablabla')).toBeFalsy()
+})
+test('get top', () => {
+    expect(searchTest.getTop('alby')).toBeFalsy()
+})
+test('get top of artist', () => {
+    expect(searchTest.getTop('DINA')).toEqual('1')
+})
+
 test('get top results of track', () => {
     expect(searchTest.getTopResults('alby')).toEqual({
         artistId: '1',
@@ -196,4 +206,9 @@ test('get top results of track', () => {
         type: 'Track',
         images: []
     })
+})
+
+test('get user by name with empty array', () => {
+    searchTest.Users=[]
+    expect(searchTest.getUserByname('salwa')).toBeFalsy()
 })

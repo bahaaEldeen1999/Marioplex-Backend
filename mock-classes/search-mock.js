@@ -25,144 +25,15 @@ const MockSearch = {
             return 0;
 
         },
-        //search for an exact match of the name sent
-        //params: array, name
-        exactmatch: function(array, name) {
 
-            let firstname;
-            for (let i = 0; i < array.length; i++) {
-                subname = array[i].Name.split(' ');
-                firstname = subname[0];
-                if (firstname == name) {
-                    return array[i]._id;
-                }
-            }
-            return 0;
-
-        },
-
-        //get all albums with the name albumName
-        //params: albumName, groups, country, limit, offset
-        getAlbums: function(artistID, groups, country, limit, offset) {
-            let SpecificAlbums = [];
-            let albums = {};
-            let artist = this.getArtist(artistID);
-            if (!artist) return 0;
-            //GET ALL THE ALBUMS OF THIS ARTIST
-            for (let i = 0; i < artist.addAlbums.length; i++) {
-                albums[artist.addAlbums[i].albumId] = this.getAlbumById(artist.addAlbums[i].albumId);
-            }
-            //FILTER THE ALBUMS BASED ON THE INPUT
-            if (groups != undefined && country != undefined) {
-                for (let Album in albums) {
-                    if (groups.includes(albums[Album].albumType) && albums[Album].availableMarkets.includes(country)) {
-                        SpecificAlbums.push(albums[Album]);
-                    }
-                }
-            } else if (groups == undefined && country != undefined) {
-                for (let Album in albums) {
-                    if (albums[Album].availableMarkets.includes(country)) {
-                        SpecificAlbums.push(albums[Album]);
-                    }
-                }
-            } else if (groups != undefined && country == undefined) {
-                for (let Album in albums) {
-                    if (groups.includes(albums[Album].albumType)) {
-                        SpecificAlbums.push(albums[Album]);
-                    }
-                }
-            } else {
-                for (let Album in albums) {
-                    SpecificAlbums.push(albums[Album]);
-                }
-            }
-            //HANDLE THE LIMIT - OFFSET FOR THE ARRAY
-            let start = 0;
-            let end = SpecificAlbums.length;
-            if (offset != undefined) {
-                if (offset >= 0 && offset <= SpecificAlbums.length) {
-                    start = offset;
-                }
-            }
-            if (limit != undefined) {
-                if ((start + limit) > 0 && (start + limit) <= SpecificAlbums.length) {
-                    end = start + limit;
-                }
-            }
-            SpecificAlbums.slice(start, end);
-            return SpecificAlbums;
-        },
-        getTracksAlbum: function(albumID) {
-
-            // connect to db and find album with the same id then return it as json file
-            // if found return album else return 0
-            const Tracks = [];
-            const album = this.getAlbumById(albumID);
-            if (!album) {
-                return 0;
-            } else {
-
-                for (i = 0; i < album.hasTracks.length; i++) {
-                    var Track = this.getTrack(album.hasTracks[i].trackId);
-                    if (Track) {
-                        let track = {}
-                        track['_id'] = Track._id;
-                        track['name'] = Track.name;
-                        track['images'] = Track.images;
-                        Tracks.push(track);
-                    }
-                }
-            }
-            if (Tracks.length == 0) {
-                return 0;
-            }
-            return Tracks;
-        },
-        getAlbumArtist: function(albumID, userID) {
-
-            // connect to db and find album with the same id then return it as json file
-            // if found return album else return 0
-
-            let album = this.getAlbumById(albumID);
-            let albumInfo = {}
-            let user = this.Users.find(User => User._id == userID);
-            if (user) {
-                let isSaved = this.checkIfUserSaveAlbum(user, albumID);
-                if (isSaved) {
-                    albumInfo['isSaved'] = true;
-                } else {
-                    albumInfo['isSaved'] = false;
-                }
-
-            }
-            if (album) {
-                let Artist = this.getArtist(album.artistId);
-                let track = this.getTracksAlbum(albumID);
-                albumInfo['_id'] = album._id;
-                albumInfo['name'] = album.name;
-                albumInfo['images'] = album.images;
-                if (Artist) {
-                    albumInfo['artistId'] = Artist._id;
-                    albumInfo['artistName'] = Artist.Name;
-                }
-                if (track) {
-                    albumInfo['track'] = track;
-                } else {
-                    albumInfo['track'] = []
-                }
-                return albumInfo;
-            } else {
-                return 0;
-            }
-        },
         getAlbum: function(albumName, groups, country, limit, offset) {
 
             var allalbum;
             let allartists = this.Artist;
-            let artist = this.exactmatch(allartists, albumName);
+            let artist = exactmatch(allartists, albumName);
             if (artist) {
 
-                allalbum = this.getAlbums(artist, groups, country, limit, offset);
+                allalbum = getAlbums(artist, groups, country, limit, offset);
 
             } else {
                 allalbum = this.Albums;
@@ -172,7 +43,7 @@ const MockSearch = {
             }
             Album = []
             for (let i = 0; i < allalbum.length; i++) {
-                let albums = this.getAlbumArtist(allalbum[i]._id);
+                let albums = getAlbumArtist(allalbum[i]._id);
                 if (albums) {
                     album = {}
                     album["_id"] = albums._id
@@ -191,36 +62,14 @@ const MockSearch = {
             return Album;
 
         },
-        getTracks: function(artistID) {
-            let SpecificTracks = [];
-            let tracks = {};
-            let artist = this.getArtist(artistID);
-            if (!artist) return 0;
-            for (let i = 0; i < artist.addTracks.length; i++) {
-                let track = this.Tracks.find(a => a._id == artist.addTracks[i].trackId);
-                if (track) { tracks[artist.addTracks[i].trackId] = track; }
-            }
-            for (let Track in tracks) {
-                SpecificTracks.push(tracks[Track]);
-            }
-            return SpecificTracks;
-        },
-        //get all tracks with Name
-        //params: Name
-        getArtist: function(artistId) {
-            return this.Artist.find(artist => artist._id == artistId);
-        },
-        getAlbumById: function(albumId) {
-            return this.Albums.find(album => album._id == albumId);
-        },
         getTrack: function(Name) {
 
             var Track;
             let allartists = this.Artist;
-            let artist = this.exactmatch(allartists, Name);
+            let artist = exactmatch(allartists, Name);
             if (artist) {
 
-                Track = this.getTracks(artist);
+                Track = getTracks(artist);
 
             } else {
                 const track = this.Tracks;
@@ -230,7 +79,7 @@ const MockSearch = {
 
             trackInfo = []
             for (let i = 0; i < Track.length; i++) {
-                let artist = this.getArtist(Track[i].artistId)
+                let artist = getArtist(Track[i].artistId)
                 tracks = {}
                 if (artist) {
                     tracks["artistId"] = artist._id
@@ -238,7 +87,7 @@ const MockSearch = {
                     tracks["artistimages"] = artist.images
                     tracks["artistType"] = artist.type
                 }
-                let album = this.getAlbumById(Track[i].albumId)
+                let album = getAlbumById(Track[i].albumId)
                 if (album) {
                     tracks["albumId"] = album._id
                     tracks["albumName"] = album.name
@@ -293,7 +142,7 @@ const MockSearch = {
                 for (let i = 0; i < User.length; i++) {
                     if (User[i].userType == "Artist") {
 
-                        let artist = this.getArtist(User[i]._id);
+                        let artist = getArtist(User[i]._id);
                         if (artist != undefined) {
                             Artist = {}
                             Artist["_id"] = artist._id
@@ -314,13 +163,6 @@ const MockSearch = {
             }
 
         },
-
-        //get artist profile of id
-        //params: artistID
-        getArtist: function(artistID) {
-            return this.Artist.find(artist => artist._id == artistID);
-        },
-
         //get all user profiles with name
         //params: name
         getUserProfile: function(name) {
@@ -376,7 +218,130 @@ const MockSearch = {
             return playlistInfo;
         }
 
+}
+function getTracks(artistID) {
+    let SpecificTracks = [];
+    let tracks = {};
+    let artist = getArtist(artistID);
+    if (!artist) return 0;
+    for (let i = 0; i < artist.addTracks.length; i++) {
+        let track = MockSearch.Tracks.find(a => a._id == artist.addTracks[i].trackId);
+        if (track) { tracks[artist.addTracks[i].trackId] = track; }
     }
+    for (let Track in tracks) {
+        SpecificTracks.push(tracks[Track]);
+    }
+    return SpecificTracks;
+}
+//get all tracks with Name
+//params: Name
+function getArtist(artistId) {
+    return MockSearch.Artist.find(artist => artist._id == artistId);
+}
+function getAlbumById(albumId) {
+    return MockSearch.Albums.find(album => album._id == albumId);
+}
+//get all albums with the name albumName
+//params: albumName, groups, country, limit, offset
+function getAlbums(artistID, groups, country, limit, offset) {
+    let SpecificAlbums = [];
+    let albums = {};
+    let artist = getArtist(artistID);
+    if (!artist) return 0;
+    //GET ALL THE ALBUMS OF THIS ARTIST
+    for (let i = 0; i < artist.addAlbums.length; i++) {
+        albums[artist.addAlbums[i].albumId] = getAlbumById(artist.addAlbums[i].albumId);
+    }
+    //FILTER THE ALBUMS BASED ON THE INPUT
+    if (groups != undefined && country != undefined) {
+        for (let Album in albums) {
+            if (groups.includes(albums[Album].albumType) && albums[Album].availableMarkets.includes(country)) {
+                SpecificAlbums.push(albums[Album]);
+            }
+        }
+    } else if (groups == undefined && country != undefined) {
+        for (let Album in albums) {
+            if (albums[Album].availableMarkets.includes(country)) {
+                SpecificAlbums.push(albums[Album]);
+            }
+        }
+    } else if (groups != undefined && country == undefined) {
+        for (let Album in albums) {
+            if (groups.includes(albums[Album].albumType)) {
+                SpecificAlbums.push(albums[Album]);
+            }
+        }
+    } else {
+        for (let Album in albums) {
+            SpecificAlbums.push(albums[Album]);
+        }
+    }
+    //HANDLE THE LIMIT - OFFSET FOR THE ARRAY
+    let start = 0;
+    let end = SpecificAlbums.length;
+    if (offset != undefined) {
+        if (offset >= 0 && offset <= SpecificAlbums.length) {
+            start = offset;
+        }
+    }
+    if (limit != undefined) {
+        if ((start + limit) > 0 && (start + limit) <= SpecificAlbums.length) {
+            end = start + limit;
+        }
+    }
+    SpecificAlbums.slice(start, end);
+    return SpecificAlbums;
+}
+
+        //search for an exact match of the name sent
+        //params: array, name
+        function exactmatch(array, name) {
+
+            let firstname;
+            for (let i = 0; i < array.length; i++) {
+                subname = array[i].Name.split(' ');
+                firstname = subname[0];
+                if (firstname == name) {
+                    return array[i]._id;
+                }
+            }
+            return 0;
+
+        }
+
+        
+function getAlbumArtist (albumID, userID) {
+
+    // connect to db and find album with the same id then return it as json file
+    // if found return album else return 0
+
+    let album = getAlbumById(albumID);
+    let albumInfo = {}
+    let user = MockSearch.Users.find(User => User._id == userID);
+    if (user) {
+        let isSaved = checkIfUserSaveAlbum(user, albumID);
+        if (isSaved) {
+            albumInfo['isSaved'] = true;
+        } else {
+            albumInfo['isSaved'] = false;
+        }
+
+    }
+    if (album) {
+        let Artist = getArtist(album.artistId);
+        albumInfo['_id'] = album._id;
+        albumInfo['name'] = album.name;
+        albumInfo['images'] = album.images;
+        if (Artist) {
+            albumInfo['artistId'] = Artist._id;
+            albumInfo['artistName'] = Artist.Name;
+        }
+        return albumInfo;
+    } else {
+        return 0;
+    }
+}
+
     //search for name in schema
     //params: field, name, schema  
 function search(name, field, schema) {
