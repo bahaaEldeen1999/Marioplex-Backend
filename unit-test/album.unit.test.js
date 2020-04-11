@@ -19,6 +19,13 @@ AlbumTest.albums = [{
     'artistId':'2',
     'hasTracks':[]
    
+},
+{  
+'_id':'4',
+'artistId':'20',
+'hasTracks':['30']
+
+
 }]
 AlbumTest.artists=[{
     '_id':'2',
@@ -68,6 +75,11 @@ test('get albums',()=>{
    "images": [], "name": "album gamed"}, "Artist": {"Name": "Amr Diab", "_id": "2","images":[],"info": "greattt","type": "Artist","genre": "pop"}}])
 })
 test('get albums',()=>{
+    expect(AlbumTest.getAlbums(['1','30'])).toMatchObject([{"Album": {"_id": "1", "artistId": "2", "hasTracks": [{"trackId": "1"}],
+   "images": [], "name": "album gamed"}, "Artist": {"Name": "Amr Diab", "_id": "2","images":[],"info": "greattt","type": "Artist","genre": "pop"}}])
+})
+
+test('get albums',()=>{
     expect(AlbumTest.getAlbums()).toEqual(0)
 })
 test('get albums',()=>{
@@ -81,6 +93,10 @@ test('get tracks album',()=>{
     expect(AlbumTest.getTracksAlbum("1")).toEqual(  [{'_id':'1',
     'name':'alby etmnah',
     'images':[]}])
+})
+
+test('get tracks album',()=>{
+    expect(AlbumTest.getTracksAlbum("4")).toBeFalsy()
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('1',user)).toHaveProperty('_id','1')
@@ -102,10 +118,12 @@ test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('2',user)).toHaveProperty('isSaved',false);
         
 })
+
 test('get album with artist',()=>{
-    expect(AlbumTest.getAlbumArtist('2',user)).toHaveProperty('isSaved',false);
+    expect(AlbumTest.getAlbumArtist('2',user2)).toHaveProperty('isSaved',false);
         
 })
+
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('15',0)).toEqual(0);
         
@@ -126,7 +144,9 @@ test('check if user saves album',()=>{
 test('check if user does not saves album',()=>{
     expect(AlbumTest.checkIfUserSaveAlbum(user,'2')).toEqual(undefined)
 })
-
+test('user saves album',()=>{
+    expect(AlbumTest.saveAlbum(user,['20'])).toEqual(2)
+})
 test('user saves album',()=>{
     expect(AlbumTest.saveAlbum(user,['2'])).toEqual(1)
 })
@@ -161,3 +181,4 @@ test('get track index in album',()=>{
 test('get track index in album',()=>{
     expect(AlbumTest.findIndexOfTrackInAlbum('20',AlbumTest.albums[0])).toEqual(0)
 })
+
