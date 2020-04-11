@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1586615443755" clover="3.2.0">
-  <project timestamp="1586615443756" name="All files">
-    <metrics statements="1039" coveredstatements="884" conditionals="628" coveredconditionals="407" methods="124" coveredmethods="120" elements="1791" coveredelements="1411" complexity="0" loc="1039" ncloc="1039" packages="1" files="11" classes="11"/>
+<coverage generated="1586615858592" clover="3.2.0">
+  <project timestamp="1586615858592" name="All files">
+    <metrics statements="1039" coveredstatements="894" conditionals="628" coveredconditionals="412" methods="124" coveredmethods="121" elements="1791" coveredelements="1427" complexity="0" loc="1039" ncloc="1039" packages="1" files="11" classes="11"/>
     <file name="album-mock.js" path="G:\CMP_SecondYear\Second_SEM\SW\MARIOPLEX\back\TEST JEST\Marioplex-Backend\mock-classes\album-mock.js">
       <metrics statements="102" coveredstatements="98" conditionals="57" coveredconditionals="44" methods="15" coveredmethods="15"/>
       <line num="1" count="2" type="stmt"/>
@@ -965,41 +965,41 @@
       <line num="390" count="1" type="stmt"/>
     </file>
     <file name="track-mock.js" path="G:\CMP_SecondYear\Second_SEM\SW\MARIOPLEX\back\TEST JEST\Marioplex-Backend\mock-classes\track-mock.js">
-      <metrics statements="34" coveredstatements="24" conditionals="14" coveredconditionals="9" methods="9" coveredmethods="8"/>
+      <metrics statements="34" coveredstatements="34" conditionals="14" coveredconditionals="14" methods="9" coveredmethods="9"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="5" count="8" type="stmt"/>
-      <line num="9" count="0" type="stmt"/>
-      <line num="10" count="0" type="stmt"/>
-      <line num="11" count="0" type="stmt"/>
-      <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="15" count="0" type="stmt"/>
-      <line num="19" count="6" type="stmt"/>
-      <line num="21" count="6" type="cond" truecount="1" falsecount="1"/>
-      <line num="22" count="13" type="stmt"/>
-      <line num="24" count="0" type="stmt"/>
-      <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="5" count="27" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="10" count="2" type="stmt"/>
+      <line num="11" count="6" type="stmt"/>
+      <line num="12" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="13" count="5" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="19" count="9" type="stmt"/>
+      <line num="21" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="14" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="28" count="3" type="cond" truecount="2" falsecount="0"/>
       <line num="29" count="1" type="stmt"/>
-      <line num="31" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="32" count="1" type="stmt"/>
       <line num="35" count="1" type="stmt"/>
-      <line num="38" count="0" type="stmt"/>
-      <line num="39" count="0" type="stmt"/>
-      <line num="42" count="0" type="stmt"/>
-      <line num="46" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="38" count="1" type="stmt"/>
+      <line num="39" count="1" type="stmt"/>
+      <line num="42" count="1" type="stmt"/>
+      <line num="46" count="3" type="cond" truecount="2" falsecount="0"/>
       <line num="47" count="1" type="stmt"/>
-      <line num="49" count="1" type="stmt"/>
-      <line num="50" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="51" count="1" type="stmt"/>
-      <line num="54" count="1" type="stmt"/>
-      <line num="58" count="1" type="stmt"/>
-      <line num="59" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="60" count="1" type="stmt"/>
-      <line num="76" count="1" type="stmt"/>
-      <line num="79" count="1" type="stmt"/>
-      <line num="108" count="1" type="stmt"/>
+      <line num="50" count="2" type="stmt"/>
+      <line num="51" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="52" count="2" type="stmt"/>
+      <line num="55" count="2" type="stmt"/>
+      <line num="59" count="2" type="stmt"/>
+      <line num="60" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="61" count="1" type="stmt"/>
+      <line num="77" count="1" type="stmt"/>
+      <line num="80" count="1" type="stmt"/>
       <line num="109" count="1" type="stmt"/>
-      <line num="114" count="1" type="stmt"/>
+      <line num="110" count="1" type="stmt"/>
+      <line num="115" count="1" type="stmt"/>
     </file>
     <file name="user-mock.js" path="G:\CMP_SecondYear\Second_SEM\SW\MARIOPLEX\back\TEST JEST\Marioplex-Backend\mock-classes\user-mock.js">
       <metrics statements="70" coveredstatements="58" conditionals="40" coveredconditionals="19" methods="15" coveredmethods="13"/>
