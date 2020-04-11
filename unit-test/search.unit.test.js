@@ -7,7 +7,7 @@ searchTest.Users = [{
         'images': []
     }, {
         '_id': '2',
-        'displayName': 'aya',
+        'displayName': 'nawal',
         'userType': 'User',
         'type': 'User',
         'images': []
@@ -49,8 +49,13 @@ searchTest.Albums = [{
     'hasTracks': [{ 'trackId': '1' }],
     'name': 'album gamed',
     'images': [],
-    'type': 'Album'
+    'type': 'Album',
+    availableMarkets:['EG'],
+    albumType:['Single']
 
+},{
+  '_id':'2',
+  'name':'swswswsw'
 }]
 
 test('get user by name', () => {
@@ -62,11 +67,18 @@ test('get user by name', () => {
         'images': []
     }])
 })
+
 test('get user by name that does not exist', () => {
     expect(searchTest.getUserByname('samir')).toEqual([])
 })
 test('get user profile', () => {
-    expect(searchTest.getUserProfile('aya')).toEqual([{ '_id': '2', 'displayName': 'aya', 'images': [], 'type': 'User' }])
+    expect(searchTest.getUserProfile('nawal')).toEqual([{ '_id': '2', 'displayName': 'nawal', 'images': [], 'type': 'User' }])
+})
+test('get user profile of name does not exist', () => {
+    expect(searchTest.getUserProfile('wewewe')).toEqual([])
+})
+test('get user profile of an artist', () => {
+    expect(searchTest.getUserProfile('DINA')).toEqual([])
 })
 test('get playlist', () => {
     expect(searchTest.getPlaylist('hello')).toEqual([{
@@ -80,6 +92,9 @@ test('get playlist', () => {
         "images": []
     }])
 })
+test('get playlist of name doesnot exists', () => {
+    expect(searchTest.getPlaylist('WEWE')).toEqual([])
+})
 
 test('get artist', () => {
     expect(searchTest.getArtistProfile('dina')).toEqual([{
@@ -90,6 +105,9 @@ test('get artist', () => {
         'type': 'Artist',
         'genre': 'pop'
     }])
+})
+test('get artist with name doesnot exists', () => {
+    expect(searchTest.getArtistProfile('lele')).toBeFalsy()
 })
 test('get track', () => {
     expect(searchTest.getTrack('alby')).toEqual([{
@@ -107,7 +125,16 @@ test('get track', () => {
         images: []
     }])
 })
+test('get track that does not exist', () => {
+    expect(searchTest.getTrack('lele')).toEqual([])
+})
 
+test('get top of profile', () => {
+    expect(searchTest.getTopResults('nawal')).toEqual({ '_id': '2', 'displayName': 'nawal', 'images': [], 'type': 'User' })
+})
+test('get top of an artist', () => {
+    expect(searchTest.getTopResults('DINA')).toEqual({"_id": "1", "genre": "pop", "images": [], "info": "greattt", "name": "DINA", "type": "Artist"})
+})
 test('get tracks of artist', () => {
     expect(searchTest.getTrack('DINA')).toEqual([{
         artistId: '1',
@@ -135,6 +162,43 @@ test('get albums of artist', () => {
         artistName: 'DINA',
         artistType: 'Artist'
     }])
+})
+test('get album', () => {
+    expect(searchTest.getAlbum('DINA','Single','EG',0,1)).toEqual([{
+        _id: '1',
+        name: 'album gamed',
+        images: [],
+        type: 'Album',
+        artistId: '1',
+        artistName: 'DINA',
+        artistType: 'Artist'
+    }])
+})
+test('get album of name doesnot exist', () => {
+    expect(searchTest.getAlbum('DINA',undefined,'EG',0,1)).toEqual([{
+        _id: '1',
+        name: 'album gamed',
+        images: [],
+        type: 'Album',
+        artistId: '1',
+        artistName: 'DINA',
+        artistType: 'Artist'
+    }])
+})
+test('get album', () => {
+    expect(searchTest.getAlbum('DINA','Single',undefined,0,1)).toEqual([{
+        _id: '1',
+        name: 'album gamed',
+        images: [],
+        type: 'Album',
+        artistId: '1',
+        artistName: 'DINA',
+        artistType: 'Artist'
+    }])
+})
+
+test('get album of name doesnot exist', () => {
+    expect(searchTest.getAlbum('lele')).toEqual([])
 })
 test('get albums', () => {
     expect(searchTest.getAlbum('gamed')).toEqual([{
@@ -211,4 +275,20 @@ test('get top results of track', () => {
 test('get user by name with empty array', () => {
     searchTest.Users=[]
     expect(searchTest.getUserByname('salwa')).toBeFalsy()
+})
+test('get artist by name with empty array', () => {
+    searchTest.Artist=[]
+    expect(searchTest.getArtistProfile('salwa')).toBeFalsy()
+})
+test('get track by name with empty array', () => {
+    searchTest.Tracks=[]
+    expect(searchTest.getTrack('salwa')).toEqual([])
+})
+test('get album by name with empty array', () => {
+    searchTest.Albums=[]
+    expect(searchTest.getAlbum('salwa')).toEqual([])
+})
+test('get playlist by name with empty array', () => {
+    searchTest.Playlists=[]
+    expect(searchTest.getPlaylist('salwa')).toEqual([])
 })

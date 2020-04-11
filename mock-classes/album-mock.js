@@ -13,28 +13,34 @@ const MockAlbum =  {
     getTrack : function(trackId){
         return this.tracks.find(track => track._id==trackId);
     },
-    findUserById:function(userID){
-        return this.user.find(User => User._id==userID);
-
-    },
-    getAlbumArtist: function(albumID, userID) {
+  
+    getAlbumArtist: function(albumID, user) {
 
         // connect to db and find album with the same id then return it as json file
         // if found return album else return 0
 
         let album =  this.getAlbumById(albumID);
+        if(!album)return 0;
         let albumInfo = {}
-        let user =  this.findUserById(userID);
+        let isSaved=false ;
         if (user) {
-            let isSaved = this.checkIfUserSaveAlbum(user, albumID);
-            if (isSaved) {
-                albumInfo['isSaved'] = true;
-            } else {
-                albumInfo['isSaved'] = false;
+            const albumsUserSaved = user.saveAlbum;
+        if (albumsUserSaved) {
+            for(let i=0;i<albumsUserSaved.length;i++){
+                if(albumsUserSaved[i].albumId==albumID){
+                    isSaved=true;
+                    break;
+                }
             }
+        }  
+                albumInfo['isSaved'] = isSaved;
+            
 
         }
-        if (album) {
+        else{
+            return 0;
+        }
+        
             let Artist = this.getArtist(album.artistId);
             let track = this.getTracksAlbum(albumID);
             albumInfo['_id'] = album._id;
@@ -49,20 +55,19 @@ const MockAlbum =  {
             } else {
                 albumInfo['track'] = []
             }
+            console.log(albumInfo)
             return albumInfo;
-        } else {
-            return 0;
-        }
+        
         
 
 
 
     },
-    findIndexOfTrackInAlbum: async function(trackId, album) {
+    findIndexOfTrackInAlbum: function(trackId, album) {
         for (let i = 0; i < album.hasTracks.length; i++) {
             if (album.hasTracks[i].trackId == trackId) return i;
         }
-        return undefined;
+        return 0;
     },
     // get several albums by ids
     getAlbums: function(albumIds) {
@@ -92,7 +97,7 @@ const MockAlbum =  {
         }
     },
     //  get tracks of an album
-    getTracksAlbum: async function(albumID) {
+    getTracksAlbum: function(albumID) {
 
         // connect to db and find album with the same id then return it as json file
         // if found return album else return 0
@@ -157,7 +162,7 @@ const MockAlbum =  {
         if (albums.length == 0) { return 2; }
         let count = 0;
         for (let i = 0; i < albums.length; i++) {
-            if (this.checkIfUserSaveAlbum(user, albums[i]) == undefined) {
+            if (!this.checkIfUserSaveAlbum(user, albums[i])) {
                 if (user.saveAlbum) {
                     user.saveAlbum.push({
                         albumId: albums[i],
@@ -178,7 +183,7 @@ const MockAlbum =  {
         }
         return 1;
     },
-    unsaveAlbum: async function(user, albumID) {
+    unsaveAlbum: function(user, albumID) {
         // check if user already saved the album
         // if not found then add album.album_id to user likes and return the updated user
         // else return 0 as he already saved the album
