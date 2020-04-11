@@ -92,8 +92,10 @@ const MockPlaylist =  {
     },
     deletePlaylist: function(user, playlistId) {
         const playlist =  this.getPlaylist(playlistId);
+        
         if (playlist) {
             const userHasPlaylist =  this.checkIfUserHasPlaylist(user, playlistId);
+           
             if (userHasPlaylist) {
                 // connect to db and find play with the same id then return it as json file
                 for (let i = 0; i < user.createPlaylist.length; i++) {
@@ -102,6 +104,7 @@ const MockPlaylist =  {
                         user.createPlaylist.splice(i, 1);
                     }
                 }
+               
                 return this.unfollowPlaylist(user, playlistId);
 
             }
@@ -136,13 +139,14 @@ const MockPlaylist =  {
     unfollowPlaylist: function(user, playlistID) {
         let check =  this.getPlaylist(playlistID);
         if (!check) { return 0; }
+        if (user.followPlaylist) {
         const followedBefore = this.checkFollowPlaylistByUser(user, playlistID)
 
         if (!followedBefore) {
 
             return 0;
         }
-        if (user.followPlaylist) {
+        
 
             for (let i = 0; i < user.followPlaylist.length; i++) {
 
@@ -229,7 +233,7 @@ const MockPlaylist =  {
             }
         }
         playlists.slice(start, end);
-        console.log(playlists)
+       // console.log(playlists)
         return playlists;
     },
     changeCollaboration:  function(user, playlistID) {

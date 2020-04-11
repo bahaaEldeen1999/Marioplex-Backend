@@ -96,6 +96,8 @@ const user2 = {
     ]
  }
 
+
+
 test('get playlist with id 1',()=>{
    expect(PlaylistTest.getPlaylist("1")).toEqual(  
     {
@@ -692,3 +694,431 @@ test('get popular playlist',()=>{
     expect(PlaylistTest.deletePlaylist(user,"10")).toEqual( 
       0)
  })
+
+ let PlaylistTest2 = {};
+ PlaylistTest2 = Object.assign(PlaylistTest2,MockPlaylist);
+PlaylistTest2.playlists = [
+   {
+      id:"1",
+      Description:"Konniciwa minna san",
+      popularity:4,
+      type:"playlist",
+      ownerId:"1",
+      collaborative:false,
+      name:"HELLO SLEEP WALKERS",
+      isPublic:true,
+      images:[],
+      snapshot:[
+          {
+              id:"1",
+              hasTracks:["1","2","3","4"]
+          }
+      ]
+   },
+   {
+    id:"2",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:10,
+    type:"playlist",
+    ownerId:"2",
+    name:"BYE SLEEP WALKERS",
+    isPublic:true,
+    images:[],
+    snapshot:[]
+   },
+   {
+    id:"3",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:20,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:true,
+    images:[],
+    snapshot:[]
+   },
+   {
+    id:"4",
+    Description:"Konniciwa minna san",
+    collaborative:true,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+   },
+   {
+       id:"5",
+       Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+   },
+   {
+    id:"66",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"6",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"7",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"8",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"9",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"10",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"11",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"12",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"13",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"14",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"15",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"16",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"17",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"18",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"19",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+{
+    id:"20",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[
+        {
+            id:'1',
+            hasTracks:['1','2']
+        }
+    ]
+},
+{
+    id:"21",
+    Description:"Konniciwa minna san",
+    collaborative:false,
+    popularity:0,
+    type:"playlist",
+    ownerId:"3",
+    name:"TEST SLEEP WALKERS",
+    isPublic:false,
+    images:[],
+    snapshot:[]
+},
+]
+
+const user5 = {
+    id:"5",  
+    createPlaylist:[
+        {
+            playListId:"44",
+            isPrivate:true
+        },
+        {
+            playListId:"4",
+            isPrivate:true
+        },
+        {
+            playListId:"66",
+            isPrivate:true
+        },
+        {
+            playListId:"54",
+            isPrivate:true
+        },
+        {
+            playListId:"34",
+            isPrivate:true
+        },
+    ],
+    followPlaylist:[
+        {
+            playListId:"44",
+            isPrivate:true
+        },
+        {
+            playListId:"4",
+            isPrivate:false
+        },
+        {
+            playListId:"17",
+            isPrivate:false
+        },
+
+    ]
+ }
+
+ const user6 = {
+    id:"6" 
+   
+ }
+
+ test('get playlist with tracks that is private and user dont own or follow',()=>{
+    expect(PlaylistTest2.getPopularPlaylists()).toBeTruthy();
+})
+
+test('get playlist with tracks that is private and user dont own or follow',()=>{
+    expect(PlaylistTest2.getPlaylistWithTracks('5',undefined,user5)).toBeFalsy();
+})
+
+test('create playlist with no description',()=>{
+    expect(PlaylistTest2.createPlaylist(user5,"any name",undefined)).toBeTruthy();
+})
+
+
+
+
+test('unfollow playlist for user with no follwing plalists',()=>{
+    expect(PlaylistTest2.unfollowPlaylist(user6,'3')).toBeFalsy();
+})
+
+
+test('add tracks to playlists for playlist with length 0 snapshot',()=>{
+    expect(PlaylistTest2.addTrackToPlaylist('16','1')).toBeTruthy();
+})
+
+test('get user followed playlist with wrong offset',()=>{
+    expect(PlaylistTest2.getUserPlaylists(user5,undefined,10000)).toBeTruthy();
+})
+
+test('get user followed playlist with right limit',()=>{
+    expect(PlaylistTest2.getUserPlaylists(user5,1,0)).toBeTruthy();
+})
+
+
+
+test('change collaboration of playlist to be false',()=>{
+    expect(PlaylistTest2.changeCollaboration(user5,'4')).toBeTruthy();
+})
+
+test('change collaboration of playlist to be true',()=>{
+    expect(PlaylistTest2.changeCollaboration(user5,'4')).toBeTruthy();
+})
+
+
+
+test('delete playlist that user dont own',()=>{
+    expect(PlaylistTest2.deletePlaylist(user5,'20')).toBeFalsy();
+})
+
+test('delete playlist that user  own',()=>{
+    expect(PlaylistTest2.deletePlaylist(user5,'4')).toBeTruthy();
+})
+
+test('change public of playlist not owned or followed by user',()=>{
+    expect(PlaylistTest2.changePublic(user5,'16')).toBeFalsy();
+})
+
+test('change public of playlist not owned but followed by user',()=>{
+    expect(PlaylistTest2.changePublic(user5,'17')).toBeTruthy();
+})
+
+
+
+test('remove track from non existing playlist',()=>{
+    expect(PlaylistTest2.removePlaylistTracks('1000')).toBeFalsy();
+})
+
+
+test('remove track from playlist with empty snapshot',()=>{
+    expect(PlaylistTest2.removePlaylistTracks('21')).toBeFalsy();
+})
+
+test('remove track from playlist with  snapshot that dont exist',()=>{
+    expect(PlaylistTest2.removePlaylistTracks('20',['3','4'],'22')).toBeFalsy();
+})
+
+
+
+test('reorder track for non existing playlist',()=>{
+    expect(PlaylistTest2.reorderPlaylistTracks('1000')).toBeFalsy();
+})
+
+
+test('reorder track for playlist with empty snapshot',()=>{
+    expect(PlaylistTest2.reorderPlaylistTracks('21')).toBeFalsy();
+})
+
+test('reorder track for playlist with  snapshot that dont exist',()=>{
+    expect(PlaylistTest2.reorderPlaylistTracks('20',['3','4'],'22')).toBeFalsy();
+})
+
+test('reorder track for playlist with  invalid start less than 1 and no length and invalid before',()=>{
+    expect(PlaylistTest2.reorderPlaylistTracks('20',undefined,-1,undefined,-1)).toBeTruthy();
+})
+
+
+test('reorder track for playlist with  invalid more than length of snapshot tracks and length more than number of tracks and invalid before larer than tracks length ',()=>{
+    expect(PlaylistTest2.reorderPlaylistTracks('20',undefined,100,100,100)).toBeTruthy();
+})
+
+test('reorder tracks when before = 0 ',()=>{
+    expect(PlaylistTest2.reorderPlaylistTracks('20',undefined,1,1,0)).toBeTruthy();
+})
