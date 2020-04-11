@@ -6,6 +6,10 @@ test('sign up new user with new email',()=>{
 test('sign up with already existing email',()=>{
     expect(MockUsers.signup("b@b.com","123","Male","eg","1/1/1999","bahaaEldeen")).toBeFalsy();
 })
+
+test('sign up with new  email',()=>{
+    expect(MockUsers.signup("bbbb@b.com","123","Male","eg","1/1/1999","bahaaEldeen")).toBeTruthy();
+})
 test('sign up no email ',()=>{
     expect(MockUsers.signup("","123","Male","eg","1/1/1999","bahaaEldeen")).toBeFalsy();
 })

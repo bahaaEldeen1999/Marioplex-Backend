@@ -1,4 +1,5 @@
 const album_api = require('./album-mock')
+
 var FuzzySearch = require('fuzzy-search');
 const MockSearch = {
         Users: [],
@@ -318,7 +319,7 @@ function getAlbumArtist (albumID, userID) {
     let albumInfo = {}
     let user = MockSearch.Users.find(User => User._id == userID);
     if (user) {
-        let isSaved = checkIfUserSaveAlbum(user, albumID);
+        let isSaved = album_api.checkIfUserSaveAlbum(user, albumID);
         if (isSaved) {
             albumInfo['isSaved'] = true;
         } else {
@@ -386,4 +387,5 @@ const removeDupliactes = (values) => {
     }
     return newArray;
 }
-module.exports = MockSearch;
+module.exports = {MockSearch,getTracks,getAlbums,getAlbumArtist };
+

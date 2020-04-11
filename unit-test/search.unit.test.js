@@ -1,4 +1,5 @@
-const searchTest = require('../mock-classes/search-mock');
+const searchTest = require('../mock-classes/search-mock').MockSearch;
+const funcs = require('../mock-classes/search-mock')
 searchTest.Users = [{
         '_id': '1',
         'displayName': 'dina',
@@ -10,7 +11,12 @@ searchTest.Users = [{
         'displayName': 'nawal',
         'userType': 'User',
         'type': 'User',
-        'images': []
+        'images': [],
+        'saveAlbum':[
+            {
+                'albumId':'1'
+            }
+        ]
     }
 
 ]
@@ -23,11 +29,15 @@ searchTest.Artist = [{
     "genre": "pop",
     'addTracks': [{
         'trackId': '1'
-    }],
+    },{
+        'trackId': '10'
+    }
+],
     'addAlbums': [{
         'albumId': '1'
     }]
-}]
+}
+]
 searchTest.Playlists = [{
     '_id': '1',
     'name': 'hello kids',
@@ -56,7 +66,8 @@ searchTest.Albums = [{
 },{
   '_id':'2',
   'name':'swswswsw'
-}]
+},
+]
 
 test('get user by name', () => {
     expect(searchTest.getUserByname('dina')).toEqual([{
@@ -272,6 +283,44 @@ test('get top results of track', () => {
     })
 })
 
+test('get tracks of non existing artist', () => {
+    expect( funcs.getTracks('111') ).toBeFalsy();
+})
+
+test('get albums of non existing artist', () => {
+    expect( funcs.getAlbums('111') ).toBeFalsy();
+})
+
+test('get albums of users with no saved albums', () => {
+    expect( funcs.getAlbumArtist('1','1') ).toBeTruthy();
+})
+
+test('get albums of users with  saved albums', () => {
+    expect( funcs.getAlbumArtist('1','2') ).toBeTruthy();
+})
+
+test('get albums od artist with wrong offset and limit', () => {
+    expect( funcs.getAlbums('1',["fe"],"ee",1000,1000) ).toBeTruthy();
+})
+
+test('get albums of artist with defined group and undefined country', () => {
+    expect( funcs.getAlbums('1',["fe"],undefined,1000,1000) ).toBeTruthy();
+})
+
+test('get albums of artist with undefined group and defined country', () => {
+    expect( funcs.getAlbums('1',undefined,"ee",1000,1000) ).toBeTruthy();
+})
+
+test('get albums of artist with undefined group and undefined country', () => {
+    expect( funcs.getAlbums('1',undefined,undefined,1000,1000) ).toBeTruthy();
+})
+
+
+
+test('get   user album with incorrect id ' , () => {
+    expect( funcs.getAlbumArtist('881','1') ).toBeFalsy();
+})
+
 test('get user by name with empty array', () => {
     searchTest.Users=[]
     expect(searchTest.getUserByname('salwa')).toBeFalsy()
@@ -292,3 +341,7 @@ test('get playlist by name with empty array', () => {
     searchTest.Playlists=[]
     expect(searchTest.getPlaylist('salwa')).toEqual([])
 })
+
+
+
+
