@@ -6,26 +6,32 @@ AlbumTest.albums = [{
     'hasTracks':[{'trackId':'1'}],
     'name':'album gamed',
     'images':[]
-   
+
 },
 {
     '_id':'2',
     'artistId':'2',
     'hasTracks':[]
-   
+
 },
 {
     '_id':'3',
     'artistId':'2',
     'hasTracks':[]
-   
+
 },
-{  
+{
 '_id':'4',
 'artistId':'20',
 'hasTracks':['30']
 
 
+},
+{
+  '_id':'5',
+  'name':'haytham',
+  'images':[],
+  'hasTracks':[]
 }]
 AlbumTest.artists=[{
     '_id':'2',
@@ -67,7 +73,7 @@ test('get album',()=>{
         'hasTracks':[{'trackId':'1'}],
         'name':'album gamed',
         'images':[]
-       
+
     })
 })
 test('get albums',()=>{
@@ -81,6 +87,9 @@ test('get albums',()=>{
 
 test('get albums',()=>{
     expect(AlbumTest.getAlbums()).toEqual(0)
+})
+test('get albums',()=>{
+    expect(AlbumTest.getAlbums(['5'])).toEqual([])
 })
 test('get albums',()=>{
     expect(AlbumTest.getAlbums([])).toEqual(0)
@@ -100,37 +109,47 @@ test('get tracks album',()=>{
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('1',user)).toHaveProperty('_id','1')
-        
+
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('1')).toEqual(0);
-        
+
+})
+test('get album with artist',()=>{
+    expect(AlbumTest.getAlbumArtist('5',user)).toEqual({
+      "isSaved": false,
+      '_id':'5',
+      'name':'haytham',
+      'images':[],
+      'track':[]
+    });
+
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('10')).toEqual(0);
-        
+
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('10',user)).toEqual(0);
-        
+
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('2',user)).toHaveProperty('isSaved',false);
-        
+
 })
 
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('2',user2)).toHaveProperty('isSaved',false);
-        
+
 })
 
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('15',0)).toEqual(0);
-        
+
 })
 test('get album with artist',()=>{
     expect(AlbumTest.getAlbumArtist('15',user)).toEqual(0);
-        
+
 })
 test('add track to album',()=>{
     expect(AlbumTest.addTrack('1',Track)).toEqual(1);
@@ -168,6 +187,10 @@ test('user unsaves album',()=>{
 test('user unsaves album is already unsaved',()=>{
     expect(AlbumTest.unsaveAlbum(user,['3'])).toEqual(false)
 })
+test('user unsaves album is already unsaved',()=>{
+    expect(AlbumTest.unsaveAlbum(user,['8','7'])).toEqual(false)
+})
+
 test('user unsaves album with empty array',()=>{
     expect(AlbumTest.unsaveAlbum(user,[])).toBeTruthy()
 })
@@ -181,4 +204,3 @@ test('get track index in album',()=>{
 test('get track index in album',()=>{
     expect(AlbumTest.findIndexOfTrackInAlbum('20',AlbumTest.albums[0])).toEqual(0)
 })
-
