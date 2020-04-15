@@ -105,22 +105,15 @@ router.post('/me/player/next-playing', checkAuth, async(req, res) => {
             if (player.current_track) {
                 var nextPlayingTrack = await Track.getFullTrack(player.next_track.trackId, user);
                 const skip = await Player.skipNext(user)
-                if (skip == 2) {
-                    if (nextPlayingTrack) {
-                        nextPlayingTrack["isPlaylist"] = player.next_track.isPlaylist;
-                        nextPlayingTrack["playlistId"] = player.next_track.playlistId;
-                        nextPlayingTrack["isPlayable"] = true;
+                if (nextPlayingTrack) {
+                    if (skip == 2)
                         nextPlayingTrack["fristInSource"] = true;
-                        res.send(nextPlayingTrack);
-                    } else res.status(404).json({ error: 'track not found' })
-                } else {
-                    if (nextPlayingTrack) {
-                        nextPlayingTrack["isPlaylist"] = player.next_track.isPlaylist;
-                        nextPlayingTrack["playlistId"] = player.next_track.playlistId;
-                        nextPlayingTrack["isPlayable"] = true;
-                        res.send(nextPlayingTrack);
-                    } else res.status(404).json({ error: 'track not found' })
-                }
+                    nextPlayingTrack["isPlaylist"] = player.next_track.isPlaylist;
+                    nextPlayingTrack["playlistId"] = player.next_track.playlistId;
+                    nextPlayingTrack["isPlayable"] = true;
+                    res.send(nextPlayingTrack);
+                } else res.status(404).json({ error: 'track not found' })
+
             } else res.status(400).send('next does not exist')
         } else res.status(403).send('user is not correct')
     })
@@ -193,7 +186,7 @@ router.get('/me/player/recently-played', checkAuth, async(req, res) => {
     })
     // add to recent played
 router.put('/me/player/recently-played/:source_id/:track_id', checkAuth, async(req, res) => {
-    if (checkID([track_id, source_id])) {
+    if (checkID([req.params.track_id, req.params.source_id])) {
         const user = await User.getUserById(req.user._id);
         if (user) {
             const playHistory = await Player.addRecentTrack(user, req.params.track_id, req.query.sourceType, req.params.source_id);

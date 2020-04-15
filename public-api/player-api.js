@@ -37,64 +37,67 @@ const Player = {
     /** 
      * get recently playlists &albums & artist 
      * @param  {Object} user - the user
-     * @returns {Array<Object>}
+     * @returns {JSON}
      */
     getRecentlyHomePage: async function(user) {
         if (user.playHistory) {
-            let recentPlaying = [];
+            let recentlyArtist = [];
+            let recentlyPlaylist = [];
+            let recentlyAlbum = [];
             let playHistory = user.playHistory;
             let limit;
+            let index = 0;
             if (playHistory.length < 20) limit = playHistory.length;
             else limit = 20;
             for (let i = 0; i < limit; i++) {
+                let isFind = 0;
                 // now check type to print 
                 if (playHistory[i].sourceType == 'album') {
-                    const album = await Album.getAlbumById(playHistory[i].sourceId);
-                    if (!album) continue;
-                    const artist = await Artist.getArtist(album.artistId);
-                    recentPlaying.push({ id: album._id, name: album.name, type: "album", album_type: album.albumType, images: album.images, availableMarkets: album.availableMarkets, artist: { type: 'artist', id: album.artistId, name: artist.Name }, index: i })
-                } else if (playHistory[i].sourceType == 'artist') {
-                    const artist = await Artist.getArtist(playHistory[i].sourceId);
-                    if (!artist) continue;
-                    recentPlaying.push({ genre: artist.genre, type: 'artist', name: artist.Name, images: artist.images, id: artist._id, info: artist.info, index: i });
+                    for (let j = 0; j < recentlyAlbum.length; j++)
+                        if (playHistory[i].sourceId + 1 == recentlyAlbum[j].id + 1)
+                            isFind = 1;
+                    if (!isFind) {
+                        const album = await Album.getAlbumById(playHistory[i].sourceId);
+                        if (!album) continue;
+                        const artist = await Artist.getArtist(album.artistId);
+                        recentlyAlbum.push({ id: album._id, name: album.name, type: "album", album_type: album.albumType, images: album.images, availableMarkets: album.availableMarkets, artist: { type: 'artist', id: album.artistId, name: artist.Name }, index: index })
+                        index++;
+                    }
+                } else if (playHistory[i].sourceType + 1 == 'artist' + 1) {
+                    for (let j = 0; j < recentlyArtist.length; j++)
+                        if (playHistory[i].sourceId == recentlyArtist[j].id)
+                            isFind = 1;
+                    if (!isFind) {
+                        const artist = await Artist.getArtist(playHistory[i].sourceId);
+                        if (!artist) continue;
+                        recentlyArtist.push({ genre: artist.genre, type: 'artist', name: artist.Name, images: artist.images, id: artist._id, info: artist.info, index: index });
+                        index++;
+
+                    }
                 } else if (playHistory[i].sourceType == 'playlist') {
-                    const playlist = await Playlist.getPlaylist(playHistory[i].sourceId);
-                    if (!playlist) continue;
-                    const user1 = await userDocument.findById(playlist.ownerId);
-                    recentPlaying.push({ owner: { id: playlist.ownerId, type: "user", name: user1.displayName }, collaborative: playlist.collaborative, type: 'playlist', name: playlist.name, images: playlist.images, id: playlist._id, Description: playlist.Description, isPublic: playlist.isPublic, index: i });
+                    for (let j = 0; j < recentlyPlaylist.length; j++)
+                        if (playHistory[i].sourceId + 1 == recentlyPlaylist[j].id + 1)
+                            isFind = 1;
+                    if (!isFind) {
+                        const playlist = await Playlist.getPlaylist(playHistory[i].sourceId);
+                        if (!playlist) continue;
+                        const user1 = await userDocument.findById(playlist.ownerId);
+                        recentlyPlaylist.push({ owner: { id: playlist.ownerId, type: "user", name: user1.displayName }, collaborative: playlist.collaborative, type: 'playlist', name: playlist.name, images: playlist.images, id: playlist._id, Description: playlist.Description, isPublic: playlist.isPublic, index: index });
+                        index++;
+                    }
                 }
+
             }
-            const recently = { recentlyPlaying: recentPlaying };
-            return recently;
+            // const recently = { "recentlyPlaying": recentPlaying };
+            return {
+                'recentlyArtist': recentlyArtist,
+                'recentlyPlaylist': recentlyPlaylist,
+                'recentlyAlbum': recentlyAlbum
+            }
         }
-        return 0;
+        return recentPlaying;
     },
-    /** 
-     * get recently playlists &albums & artist 
-     * @param  {Object} user - the user
-     * @returns {JSON}
-     */
-    getHomePage: async function(user) {
-        //// To Do check if exist not send
-        const recently = this.getRecentlyHomePage(user).recentlyPlaying;
-        if (!recently) return 0;
-        const recentlyArtist = [];
-        const recentlyPlaylist = [];
-        const recentlyAlbum = [];
-        for (let i = 0; i < recently.length; i++) {
-            if (recently[i].type == 'artist')
-                recentlyArtist.push(recently[i]);
-            else if (recently[i].type == 'playlist')
-                recentlyPlaylist.push(recently[i]);
-            else if (recently[i].type == 'album')
-                recentlyAlbum.push(recently[i]);
-        }
-        return {
-            'recentlyArtist': recentlyArtist,
-            'recentlyPlaylist': recentlyPlaylist,
-            'recentlyAlbum': recentlyAlbum
-        }
-    },
+
     /** 
      * to clear playHistory when has more than 50 
      * @param  {Object} user - the user
