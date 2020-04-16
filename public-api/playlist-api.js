@@ -10,6 +10,11 @@ const checkMonooseObjectID = require('../validation/mongoose-objectid')
 const Playlist = {
 
 
+    /**
+     * get a playlist by id
+     * @param {string} playlistId - playlist id
+     * @returns {Object|0} - playlist object
+     */
     // get playlist by id
     // params : playlistId
     getPlaylist: async function(playlistId) {
@@ -21,6 +26,10 @@ const Playlist = {
         return playlist;
 
     },
+    /**
+     * get popular playlists
+     * @returns {array<object>} - array of playlists' object
+     */
     //get popular playlists based on popularity
     getPopularPlaylists: async function() {
         // with - is from big to small and without is from small to big
@@ -38,6 +47,13 @@ const Playlist = {
         const replaylistsJson = { playlists: replaylists };
         return replaylistsJson;
     },
+    /**
+     * get playlist with tracks
+     * @param {string} playlistId - playlist id
+     * @param {string} snapshotID
+     * @param {Object} user -user object
+     * @returns {array<object>|0} - array of objects of a playlist and it's tracks
+     */
     //for routes
     //get playlist with tracks
     //params: playlistId, snapshotID, user
@@ -80,7 +96,12 @@ const Playlist = {
         }
         return 0;
     },
-
+    /**
+     * check if user has a specific playlist
+     * @param {string} playlistId - playlist id
+     * @param {Object} user - user object
+     * @returns {number|undefined} - the index of playlist id in user's playlists
+     */
 
     //check if user has a specific playlist
     //params:user, playlistID
@@ -93,7 +114,13 @@ const Playlist = {
         }
         return 0;
     },
-
+    /**
+     * create playlist
+     * @param {string} [description] - playlist discription
+     * @param {string} Name - playlist name
+     * @param {string} userid - user id
+     * @returns {Object} - playlist object
+     */
     // create playlist
     // params : userid, Name, description
     createPlaylist: async function(userid, Name, description) {
@@ -114,6 +141,12 @@ const Playlist = {
         await Playlist.save();
         return Playlist;
     },
+    /**
+     * find index of track in playlist
+     * @param {string} trackId - track id 
+     * @param {Object} tplaylist - playlist object
+     * @returns {number} 
+     */
     findIndexOfTrackInPlaylist: async function(trackId, tplaylist) {
         if (!checkMonooseObjectID([trackId])) return 0;
         if (!tplaylist.hasTracks) tplaylist.hasTracks = [];
@@ -123,7 +156,12 @@ const Playlist = {
         }
         return -1
     },
-
+    /**
+     * delete user's created playlist
+     * @param {string} playlistId - playlist id 
+     * @param {Object} user - user object
+     * @returns {boolean} 
+     */
     //delete playlist
     //params :user, playlistId
     deletePlaylist: async function(user, playlistId) {
@@ -146,7 +184,12 @@ const Playlist = {
             }
         } else return 0;
     },
-
+    /**
+     * check if user followz playlist
+     * @param {string} playlistID - playlist id 
+     * @param {Object} user - user object
+     * @returns {boolean} 
+     */
     //check if user followz playlist
     //params:user, playlistID
     checkFollowPlaylistByUser: async function(user, playlistID) {
@@ -160,7 +203,13 @@ const Playlist = {
         }
         return 0;
     },
-
+    /**
+     * user follow playlist
+     * @param {string} playlistID - playlist id 
+     * @param {Object} user - user object
+     * @param {boolean} [isPrivate] - If true the playlist will be included in user’s public playlists, if false it will remain private. 
+     * @returns {boolean} 
+     */
     //user follow playlist
     //params : user , playlist-id ,isPrivate
     followPlaylits: async function(user, playlistID, isPrivate) {
@@ -220,6 +269,13 @@ const Playlist = {
         }
         return 0;
     },
+    /**
+     * user unfollows a playlist
+     * @param {string} playlistID - playlist id 
+     * @param {Object} user - user object
+     * @returns {boolean} 
+     */
+
     //user adds track(s) to a specific playlist
     //params: playlistID, tracksIds
     addTrackToPlaylist: async function(playlistID, tracksIds) {
@@ -251,6 +307,12 @@ const Playlist = {
         await playlist.save();
         return playlist;
     },
+    /**
+     * user adds track(s) to a specific playlist
+     * @param {string} playlistID - playlist id 
+     * @param {array<string>} tracksIds - array of tracks' id
+     * @returns {Object|0} - playlist object
+     */
     removeDups: async function(tracks) {
         if (!tracks) tracks = [];
         let unique = {};
@@ -261,7 +323,12 @@ const Playlist = {
         });
         return Object.keys(unique);
     },
-
+    /**
+     * user updates playlist details
+     * @param {string} playlistId - playlist id 
+     * @param {Object} details - object of the data to be updated
+     * @returns {Object|0} - playlist object
+     */
     //user updates playlist details
     //params :playlistId, details
     updatePlaylistDetails: async function(playlistId, details) {
@@ -272,6 +339,14 @@ const Playlist = {
         playlist = await this.getPlaylist(playlistId);
         return playlist;
     },
+    /**
+     * get playlists of a user
+     * @param {string} userId - user id 
+     * @param {number} [limit] - the maximum number of objects to return
+     * @param {number} [offset] - the index of the first object to return
+     * @param {boolean} isuser - if the user is the owner of the playlist
+     * @returns {array<object>|0} - array of playlists' object
+     */
     //get playlists of a user
     //params:userId, limit, offset, isuser
     getUserPlaylists: async function(userId, limit, offset, isuser) {
@@ -310,7 +385,12 @@ const Playlist = {
         playlists.slice(start, end);
         return playlists;
     },
-
+    /**
+     * user toggles collaboration
+     * @param {Object} user - user object
+     * @param {string} playlistID - playlist id
+     * @returns {boolean} 
+     */
     //user toggles collaboration
     //params:user, playlistID
     changeCollaboration: async function(user, playlistID) {
@@ -334,7 +414,12 @@ const Playlist = {
         return true;
 
     },
-
+    /**
+     * user toggles public status
+     * @param {Object} user - user object
+     * @param {string} playlistID - playlist id
+     * @returns {boolean} 
+     */
     //user toggles public status
     //params:user, playlistID
     changePublic: async function(user, playlistID) {
@@ -364,7 +449,11 @@ const Playlist = {
         return false;
 
     },
-
+    /**
+     * get playlist tracks (WITHOUT DETAILS OF THESE TRACKS)
+     * @param {string} playlistID - playlist id
+     * @returns {array<object>|0} -array of tracks' object 
+     */
     //get playlist tracks (WITHOUT DETAILS OF THESE TRACKS)
     //params:playlistID
     getPlaylistTracks: async function(playlistID) {
@@ -386,7 +475,13 @@ const Playlist = {
         return tracks;
 
     },
-
+    /**
+     * remove tracks from a given playlist
+     * @param {string} playlistID - playlist id
+     * @param {string} snapshotID - snapshot id
+     * @param {array<string>} tracksids -array of tracks' id
+     * @returns {array<object>|0} -array of tracks' object 
+     */
     //remove tracks from a given playlist
     //params:playlistID, tracksids, snapshotid
     removePlaylistTracks: async function(playlistID, tracksids, snapshotid) {
@@ -431,7 +526,15 @@ const Playlist = {
         return playlist;
 
     },
-
+    /**
+     * reorder tracks in a playlist
+     * @param {string} playlistID - playlist id
+     * @param {string} snapshotid - snapshot id
+     * @param {number} start 
+     * @param {number} before 
+     * @param {number} length
+     * @returns {Object|0} -playlist object
+     */
     //reorder tracks in a playlist
     //params:playlistID, snapshotid, start, length, before
     reorderPlaylistTracks: async function(playlistID, snapshotid, start, length, before) {

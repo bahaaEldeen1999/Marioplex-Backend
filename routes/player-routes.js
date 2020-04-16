@@ -22,7 +22,7 @@ router.get('/me/player/currently-playing', checkAuth, async(req, res) => {
     const user = await User.getUserById(req.user._id);
     if (user) {
         const player = user.player;
-        if (player.current_track) {
+        if (player && player.current_track) {
             var currentPlayingTrack = await Track.getFullTrack(player.current_track.trackId, user);
             if (currentPlayingTrack) {
                 currentPlayingTrack["isPlaylist"] = player.current_track.isPlaylist;
@@ -39,7 +39,7 @@ router.get('/me/player/next-playing', checkAuth, async(req, res) => {
     const user = await User.getUserById(req.user._id);
     if (user) {
         const player = user.player;
-        if (player.next_track) {
+        if (player && player.next_track) {
             var nextPlayingTrack = await Track.getFullTrack(player.next_track.trackId, user);
             if (nextPlayingTrack) {
                 nextPlayingTrack["isPlaylist"] = player.next_track.isPlaylist;
@@ -57,7 +57,7 @@ router.get('/me/player/prev-playing', checkAuth, async(req, res) => {
         const user = await User.getUserById(req.user._id);
         if (user) {
             const player = user.player;
-            if (player.prev_track) {
+            if (player && player.prev_track) {
                 var prevPlayingTrack = await Track.getFullTrack(player.prev_track.trackId, user);
                 if (prevPlayingTrack) {
                     prevPlayingTrack["isPlaylist"] = player.prev_track.isPlaylist;
@@ -70,23 +70,18 @@ router.get('/me/player/prev-playing', checkAuth, async(req, res) => {
     })
     // create queue fo player
 router.post('/createQueue/:playlist_id/:trackId', checkAuth, async(req, res) => {
-        if (checkID([req.params.playlist_id, req.params.trackId])) {
-            if (stateValidation(req.query.isPlaylist)) {
-                const sourceId = req.params.playlist_id;
-                const trackId = req.params.trackId;
-                const isPlaylist = req.query.isPlaylist;
-                const userID = req.user._id;
-                const createQueue = await User.updateUserPlayer(userID, isPlaylist, sourceId, trackId)
-                if (createQueue) res.send(' Queue is created successfully');
-                else res.status(400).send('can not create queue');
-            } else res.status(400).send('isPlaylist is required');
-        } else res.status(403).send('Enter correct ids ');
-    })
-    /////////////////////////////////////////////////
-    // TO  DO
-    // from here {<validation>} && test all 
-    // add track to user player queue
-    /////////////////////////////////////////////////
+    if (checkID([req.params.playlist_id, req.params.trackId])) {
+        if (stateValidation(req.query.isPlaylist)) {
+            const sourceId = req.params.playlist_id;
+            const trackId = req.params.trackId;
+            const isPlaylist = req.query.isPlaylist;
+            const userID = req.user._id;
+            const createQueue = await User.updateUserPlayer(userID, isPlaylist, sourceId, trackId)
+            if (createQueue) res.send(' Queue is created successfully');
+            else res.status(400).send('can not create queue');
+        } else res.status(400).send('isPlaylist is required');
+    } else res.status(403).send('Enter correct ids ');
+})
 router.post('/player/add-to-queue/:playlistId/:trackId', checkAuth, async(req, res) => {
         if (checkID([req.params.playlistId, req.params.trackId])) {
             if (stateValidation(req.query.isPlaylist)) {
@@ -102,7 +97,7 @@ router.post('/me/player/next-playing', checkAuth, async(req, res) => {
         const user = await User.getUserById(req.user._id);
         if (user) {
             const player = user.player;
-            if (player.current_track) {
+            if (player && player.current_track) {
                 var nextPlayingTrack = await Track.getFullTrack(player.next_track.trackId, user);
                 const skip = await Player.skipNext(user)
                 if (nextPlayingTrack) {
@@ -122,7 +117,7 @@ router.post('/me/player/prev-playing', checkAuth, async(req, res) => {
         const user = await User.getUserById(req.user._id);
         if (user) {
             const player = user.player;
-            if (player.prev_track) {
+            if (player && player.prev_track) {
                 var prevPlayingTrack = await Track.getFullTrack(player.prev_track.trackId, user);
                 const skip = await Player.skipPrevious(user);
                 if (prevPlayingTrack) {
