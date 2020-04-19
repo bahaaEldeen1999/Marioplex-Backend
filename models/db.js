@@ -92,6 +92,7 @@ const User = new Schema({
     isLogged: Boolean,
     images: [Image],
     userType: String,
+    creditCard: String,
     displayName: String,
     product: String,
     isFacebook: Boolean,

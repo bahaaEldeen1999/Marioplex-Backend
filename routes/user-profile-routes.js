@@ -15,7 +15,7 @@ router.get('/users/:id', checkAuth, async(req, res) => {
     }
 })
 router.put('/me/promote', checkAuth, async(req, res) => {
-    const isPromote = await User.promoteToPremium(req.user._id);
+    const isPromote = await User.promoteToPremium(req.user._id, req.query.credit);
     if (isPromote) res.status(200).send({ success: 'promote to premium ' });
     else res.status(400).send({ error: 'can not promote' })
 })
@@ -31,7 +31,8 @@ router.get('/me-player', checkAuth, async(req, res) => {
         product: 1,
         gender: 1,
         images: 1,
-        player: 1
+        player: 1,
+        userType: 1
     }).exec().then(user => {
         if (user) {
             return res.status(200).send(user);
