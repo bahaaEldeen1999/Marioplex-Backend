@@ -5,7 +5,6 @@ const { auth: checkAuth } = require('../middlewares/is-me');
 const validatePlaylistInput = require('../validation/playlist');
 const { content: checkContent } = require('../middlewares/content');
 const checkID = require('../validation/mongoose-objectid');
-const stateValidation = require('../validation/validate-boolean');
 //GET PLAYLIST - PATH PARAMS: playlist_id
 router.get('/playlists/:playlist_id', checkAuth, async(req, res) => {
     if (checkID([req.params.playlist_id])) {

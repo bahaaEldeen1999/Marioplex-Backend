@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Image = new Schema({
     height: Number,
-    wedth: Number,
-    URL: String
+    width: Number,
+
 });
 
 
@@ -36,9 +36,9 @@ const Track = new Schema({
     tempo: Number,
     timeSignature: Date,
     valence: Number,
-    like: Number
-
-
+    like: Number,
+    key: String,
+    keyId: String
 });
 
 const Playlist = new Schema({
@@ -88,11 +88,11 @@ const User = new Schema({
     type: String,
     password: String,
     gender: String,
+    creditCard: String,
     country: String,
     isLogged: Boolean,
     images: [Image],
     userType: String,
-    creditCard: String,
     displayName: String,
     product: String,
     isFacebook: Boolean,

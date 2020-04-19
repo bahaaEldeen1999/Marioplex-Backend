@@ -86,6 +86,7 @@ const Artist = {
 
     // CREATE ALBUM FOR AN ARTIST - PARAMS : ArtistID-Name,Label,Avmarkets,Albumtype,ReleaseDate,Genre
     addAlbum: async function(ArtistID, Name, Label, Avmarkets, Albumtype, ReleaseDate, Genre) {
+        if (typeof(Name) != "string" || typeof(Label) != "string") return 0;
         if (!checkMonooseObjectID([ArtistID])) return 0;
         if (!await this.getArtist(ArtistID)) return 0;
         let spotifyAlbums = spotify.album;
@@ -124,7 +125,7 @@ const Artist = {
             trackId: trackid
         });
         await artist.save();
-
+        return 1;
     },
     // GET SEVERAL ARTISTS - params : artistsIDs  -ARRAY-
     getArtists: async function(artistsIDs) {
@@ -142,6 +143,7 @@ const Artist = {
     },
     // GET SPECIFIC ALBUMS - Params :artistID,groups,country,limit,offset
     getAlbums: async function(artistID, groups, country, limit, offset) {
+        //if(limit && typeof(limit) != "number" ) return 0;
         if (!checkMonooseObjectID([artistID])) return 0;
         let SpecificAlbums = [];
         let albums = {};
@@ -234,6 +236,7 @@ const Artist = {
 
     // GET TOP TRACKS IN A COUNTRY FOR AN ARTIST
     getTopTracks: async function(artistID, country) {
+        // if(typeof(country) != "string") return 0; it is option
         if (!checkMonooseObjectID([artistID])) return 0;
         let TopTracks = [];
         let tracks = {};
@@ -246,6 +249,7 @@ const Artist = {
                 console.log(track);
             }
         }
+
         //FILTER TRACKS BASED ON THE COUNTRY
         for (let track in tracks) {
             if (tracks[track].availableMarkets && tracks[track].availableMarkets.includes(country)) {
@@ -276,6 +280,14 @@ const Artist = {
 
         return SpecificTracks;
     },
+    checkArtistHasTrack: async function(artist, trackId) {
+        if (!artist || !trackId) return 0;
+        if (!artist.addTracks) return 0;
+        for (let track of artist.addTracks) {
+            if (String(track.trackId) == String(trackId)) return 1;
+        }
+        return 0;
+    }
 }
 
 module.exports = Artist;
