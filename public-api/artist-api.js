@@ -126,9 +126,9 @@ const Artist = {
     addAlbum: async function(artistId, name, label, avMarkets, albumType, releaseDate, genre) {
         if (typeof(name) != "string" || typeof(label) != "string") return 0;
         if (!checkMonooseObjectID([artistId])) return 0;
-        if (!await this.getArtist(artistId)) return 0;
-        let spotifyAlbums = spotify.album;
-        let album = await new spotifyAlbums({
+        const artist = await this.getArtist(artistId); 
+        if (!artist) return 0;
+        let album =  new albumDocument({
             name: name,
             albumType: albumType,
             popularity: 0,
@@ -144,10 +144,7 @@ const Artist = {
             releaseDatePercision: "DD-MM-YY"
 
         });
-        await album.save(function(err, albumobj) {
-            album = albumobj;
-        });
-        const artist = await artistDocument.findById(artistId);
+        await album.save();
         artist.addAlbums.push({
             albumId: album._id
         });

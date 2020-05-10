@@ -162,9 +162,9 @@ const User = {
         if (!checkMonooseObjectID([userId, trackId])) return 0;
         const user = await this.getUserById(userId);
         if (!user) { return 0; }
-        const likeTrack = await Track.getTrack(trackId, user);
+        const likedTrack = await Track.getTrack(trackId, user);
 
-        if (!likeTrack) return 0;
+        if (!likedTrack) return 0;
         if (!user['likesTracksPlaylist']) {
             const playlist = await Playlist.createPlaylist(userId, 'liked tracks', 'track which user liked .')
             if (!playlist) return 0;
@@ -176,9 +176,10 @@ const User = {
             const ifFind = await Playlist.checkPlaylistHasTracks(user['likesTracksPlaylist'], [trackId]);
             if (ifFind && ifFind[0] == true) return 0;
         }
-        console.log('fkafjdkjfkdj');
+        
         if (!await Playlist.addTrackToPlaylist(user['likesTracksPlaylist'], [trackId])) return 0;
-        return Track.likeTrack(trackId);
+        const liked = await Track.likeTrack(trackId);
+        return liked;
     },
 
 
@@ -608,7 +609,7 @@ const User = {
 
     promoteToArtist: async function(userId, info, name, genre) {
         if (!checkMonooseObjectID([userId])) return 0;
-        user = await this.getUserById(userId);
+        const user = await this.getUserById(userId);
         if (!user) return false;
         if (user.userType == "Artist") {
             return false;
@@ -617,7 +618,7 @@ const User = {
         if (!artist) return false;
         user.userType = "Artist";
         await user.save();
-        sendmail(user.email, "Congrats!! ^^) You're Now Promoted to Artist so You can Login with your Account as an Artist");
+       sendmail(user.email, "Congrats!! ^^) You're Now Promoted to Artist so You can Login with your Account as an Artist");
         return true;
 
     },

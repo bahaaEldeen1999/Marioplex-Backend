@@ -64,7 +64,7 @@ const Album = new Schema({
     type: String,
     albumType: String,
     popularity: Number,
-    genre: String,
+    genre: [String],
     releaseDate: Date,
     availableMarkets: [String],
     releaseDatePercision: String,
