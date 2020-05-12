@@ -128,7 +128,7 @@ const Album = {
         }
         if (album) {
             let Artist = await artist.getArtist(album.artistId);
-            let track = await this.getTracksAlbum(albumID, user);
+            let track1 = await this.getTracksAlbum(albumID, user);
             albumInfo['_id'] = album._id;
             albumInfo['name'] = album.name;
             albumInfo['images'] = album.images;
@@ -136,8 +136,8 @@ const Album = {
                 albumInfo['artistId'] = Artist._id;
                 albumInfo['artistName'] = Artist.Name;
             }
-            if (track) {
-                albumInfo['track'] = track;
+            if (track1) {
+                albumInfo['track'] = track1;
             } else {
                 albumInfo['track'] = []
             }
@@ -151,7 +151,7 @@ const Album = {
     },
     // the order of track in album 's tracks
     findIndexOfTrackInAlbum: async function(trackId, album) {
-        if (!checkMonooseObjectID([trackId])) return 0;
+        if (!checkMonooseObjectID([trackId])) return -1;
         if (!album.hasTracks) album.hasTracks = [];
         for (let i = 0; i < album.hasTracks.length; i++) {
             if (album.hasTracks[i].trackId == trackId) return i;
@@ -198,8 +198,10 @@ const Album = {
         } else {
             if (!album.hasTracks) album.hasTracks = [];
             for (i = 0; i < album.hasTracks.length; i++) {
+               
                 if (!album.hasTracks[i].trackId) continue;
                 var Track = await track.getTrack(album.hasTracks[i].trackId, user);
+               
                 if (Track) {
                     let tracks = {}
                     tracks['_id'] = Track._id;
@@ -208,9 +210,14 @@ const Album = {
                     tracks['isLiked'] = await track.checkIfUserLikeTrack(user, Track._id);
                     tracks['playable'] = Track.playable;
                     Tracks.push(tracks);
+                    
                 }
+               
+                
             }
+            
         }
+        
         if (Tracks.length == 0) {
             return 0;
         }
